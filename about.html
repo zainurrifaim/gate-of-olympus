@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Gate of Olympus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="media/images/icon.png">
+</head>
+<body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 text-white">
+        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-6">About This Project</h2>
+
+        <div class="space-y-6 text-center">
+            <div class="message-box rounded-lg p-4">
+                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Our Mission</h3>
+                <p class="opacity-90">
+                    Gate of Olympus was created as an educational tool to raise awareness about the mechanics of slot machines and the risks associated with gambling. By simulating a real slot experience and revealing how the odds are manipulated, we hope to empower players with knowledge and promote responsible gaming habits.
+                </p>
+            </div>
+            <div class="message-box rounded-lg p-4">
+                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Get Help</h3>
+                <p class="opacity-90">
+                    Gambling can be addictive. If you or someone you know is struggling, please don't hesitate to seek help. There are many free and confidential resources available.
+                </p>
+                 <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-300 hover:underline mt-2 inline-block">National Council on Problem Gambling</a>
+            </div>
+             <div class="message-box rounded-lg p-4">
+                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Developers</h3>
+                <p class="opacity-90">
+                    This project was developed by a team passionate about education and public health.
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg">Back to Game</a>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+     <script>
+        // Simple component loader
+        async function loadComponent(url, placeholderId) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                document.getElementById(placeholderId).innerHTML = text;
+            } catch (error) {
+                console.error(`Error loading component: ${error}`);
+            }
+        }
+        loadComponent('components/navbar.html', 'navbar-placeholder');
+        loadComponent('components/footer.html', 'footer-placeholder');
+    </script>
+</body>
+</html>

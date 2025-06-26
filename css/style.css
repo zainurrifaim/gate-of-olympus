@@ -1,0 +1,160 @@
+/* General Body and Font Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    /* This will use your background image. If it doesn't load, the color will be a fallback. */
+    background-image: url('../media/images/background.jpg');
+    background-color: #0b0f22; /* Fallback color */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* This ensures the background stays in place on scroll */
+    color: #f0e6ff;
+    min-height: 100vh; /* Ensures body takes full screen height */
+}
+
+/* Add a class to the body when the menu is open to prevent background scrolling */
+body.menu-is-open {
+    overflow: hidden;
+}
+
+.font-cinzel {
+    font-family: 'Cinzel', serif;
+}
+
+/* Main Container Styles */
+.game-container {
+    background-color: rgba(10, 10, 25, 0.8);
+    border: 2px solid #a48b00;
+    box-shadow: 0 0 40px rgba(255, 223, 0, 0.4);
+    backdrop-filter: blur(8px);
+}
+
+/* Slot Machine Styles */
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    background: rgba(0,0,0,0.4);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid #7b6800;
+}
+
+.slot {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem; /* Responsive font size */
+    background-color: #e3d9ff;
+    color: #1c1948;
+    border-radius: 0.5rem;
+    border: 1px solid #a48b00;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease;
+}
+
+@media (min-width: 640px) {
+    .slot {
+        font-size: 5rem;
+    }
+}
+
+.slot.spinning {
+    animation: spin-anim 0.1s linear infinite;
+}
+
+@keyframes spin-anim {
+    0% { transform: translateY(-5px) scale(0.98); }
+    50% { transform: translateY(5px) scale(1); }
+    100% { transform: translateY(-5px) scale(0.98); }
+}
+
+/* Button Styles */
+.spin-button {
+    background-color: #ffd700;
+    color: #201e4d;
+    border: 2px solid #c8a400;
+    border-bottom: 5px solid #a48b00;
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.spin-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-bottom: 7px solid #a48b00;
+    filter: brightness(1.1);
+}
+
+.spin-button:active:not(:disabled) {
+    transform: translateY(1px);
+    border-bottom: 5px solid #a48b00;
+}
+
+.spin-button:disabled {
+    background: #555;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+    border-bottom: 5px solid #444;
+}
+
+/* UI Box Styles */
+.stat-box {
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid #7b6800;
+}
+.payouts-box {
+    background-color: rgba(0,0,0,0.4);
+    border: 1px solid #7b6800;
+}
+.message-box {
+    background-color: rgba(0,0,0,0.5);
+    border: 1px solid #c8a400;
+    transition: background-color 0.5s ease-in-out;
+}
+
+/* Animation and Messaging Styles */
+.win-message {
+    animation: win-pulse 1s ease-out;
+}
+
+@keyframes win-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Odds Display Phase Styles */
+.odds-display-hook, .message-hook { background-color: rgba(0, 255, 127, 0.2); border-color: springgreen; }
+.odds-display-transition, .message-transition { background-color: rgba(255, 165, 0, 0.2); border-color: orange; }
+.odds-display-house, .message-house { background-color: rgba(255, 69, 0, 0.2); border-color: orangered; }
+
+/* Modal Styles */
+.modal {
+    transition: opacity 0.25s ease;
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #2a265f 0%, #1c1948 100%);
+    transform: scale(0.95);
+    transition: transform 0.25s ease;
+    animation: zoomIn 0.3s ease-out forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* This class will be toggled by JS to show the menu */
+#menu.is-open {
+    transform: translateX(0);
+}

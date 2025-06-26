@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Center - Gate of Olympus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="media/images/icon.png">
+</head>
+<body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 text-white">
+        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-6">Learning Center</h2>
+
+        <div class="space-y-6">
+            <div class="message-box rounded-lg p-4">
+                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">What is a Random Number Generator (RNG)?</h3>
+                <p class="opacity-90">
+                    Every modern slot machine uses an RNG. It's a computer algorithm that generates thousands of random numbers per second. When you press "spin," the machine uses the most recent number to determine the outcome. This means each spin is completely independent and unpredictable. There's no such thing as a "hot" or "cold" machine.
+                </p>
+            </div>
+            <div class="message-box rounded-lg p-4">
+                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">The House Edge Explained</h3>
+                <p class="opacity-90">
+                    The "house edge" is the mathematical advantage the casino has on any given bet. For slot machines, this is represented by the Return to Player (RTP) percentage. An RTP of 95% means that, over millions of spins, the machine is programmed to pay back 95% of all money wagered. The remaining 5% is the casino's profit. In the long run, the house always wins.
+                </p>
+            </div>
+            <div class="message-box rounded-lg p-4">
+                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">The Psychology of Gambling</h3>
+                <p class="opacity-90">
+                    Gambling is designed to be psychologically appealing. Flashing lights, exciting sounds, and "near misses" all trigger dopamine releases in your brain, making you want to play more. "Losses disguised as wins" (where you win back less than your bet) can also trick you into feeling like you're winning when you're actually losing money.
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg">Back to Game</a>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script>
+        // Simple component loader for the static pages
+        async function loadComponent(url, placeholderId) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                document.getElementById(placeholderId).innerHTML = text;
+            } catch (error) {
+                console.error(`Error loading component: ${error}`);
+            }
+        }
+        loadComponent('components/navbar.html', 'navbar-placeholder');
+        loadComponent('components/footer.html', 'footer-placeholder');
+    </script>
+</body>
+</html>
