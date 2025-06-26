@@ -3,7 +3,7 @@
  * It handles game state, logic, and orchestrates UI updates.
  */
 import * as ui from './ui.js';
-import { loadComponent, initializeNavbar } from './utility.js';
+import { loadComponent, initializeNavbar, playSound, stopSound } from './utility.js';
 
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         initializeNavbar();
     });
     
+    // Make sure the game initializes after the footer is loaded
+    // to ensure all elements are available.
     loadComponent('components/footer.html', 'footer-placeholder').then(() => {
         initializeGame();
     });
@@ -21,7 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
  * Sets up the initial game state, gathers DOM elements, and attaches event listeners.
  */
 function initializeGame() {
+    // --- DOM ELEMENTS ---
     const elements = ui.getDOMElements();
+
+    // --- GAME STATE ---
     const state = {
         credits: 1000,
         spinCount: 0,
@@ -29,9 +34,12 @@ function initializeGame() {
         losses: 0,
         isSpinning: false,
     };
+
+    // --- GAME CONSTANTS ---
     const COST_PER_SPIN = 50;
     const SYMBOLS = ['⚡', '🏛️', '⭐', '💎', '🏆', '🔱'];
 
+    // --- GAME LOGIC ---
     const getCurrentWinOdds = () => {
         if (state.spinCount < 5) return 0.90;
         if (state.spinCount < 10) return 0.50;
@@ -39,6 +47,7 @@ function initializeGame() {
     };
 
     const handleWin = () => {
+        playSound('sound-win');
         state.wins++;
         const winningSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
         const prize = 150 + Math.floor(Math.random() * 10) * 10;
@@ -49,6 +58,7 @@ function initializeGame() {
     };
 
     const handleLoss = () => {
+        playSound('sound-lose');
         state.losses++;
         elements.slots[0].textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
         elements.slots[1].textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
@@ -64,14 +74,20 @@ function initializeGame() {
     const handleSpin = () => {
         if (state.isSpinning || state.credits < COST_PER_SPIN) return;
 
+        // --- 1. SETUP THE SPIN ---
+        playSound('sound-click');
+        playSound('sound-spin');
         state.isSpinning = true;
         state.spinCount++;
         state.credits -= COST_PER_SPIN;
+        
+        // --- 2. UPDATE UI FOR SPINNING STATE ---
         elements.winLoseMessage.textContent = '';
         ui.updateStatsDisplays(elements, state);
         ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
         ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
 
+        // --- 3. START THE VISUAL SPINNING ---
         let spinInterval = setInterval(() => {
             elements.slots.forEach(slot => {
                 slot.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
@@ -79,8 +95,10 @@ function initializeGame() {
             });
         }, 100);
 
+        // --- 4. DETERMINE AND DISPLAY THE OUTCOME ---
         setTimeout(() => {
             clearInterval(spinInterval);
+            stopSound('sound-spin');
             elements.slots.forEach(slot => slot.classList.remove('spinning'));
 
             const didWin = Math.random() < getCurrentWinOdds();
@@ -91,6 +109,7 @@ function initializeGame() {
                 handleLoss();
             }
             
+            // --- 5. CLEANUP AND RESET FOR NEXT SPIN ---
             setTimeout(() => {
                 elements.winLoseMessage.classList.remove('win-message');
             }, 1000);
@@ -101,9 +120,14 @@ function initializeGame() {
         }, 1500);
     };
 
+    // --- EVENT LISTENERS ---
     elements.spinButton.addEventListener('click', handleSpin);
-    elements.modalCloseButton.addEventListener('click', () => ui.hideModal(elements));
+    elements.modalCloseButton.addEventListener('click', () => {
+        playSound('sound-click');
+        ui.hideModal(elements);
+    });
 
+    // --- INITIAL RENDER ---
     ui.updateStatsDisplays(elements, state);
     ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
     ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());

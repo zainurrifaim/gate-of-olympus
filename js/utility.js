@@ -1,8 +1,37 @@
 /**
  * utility.js
  * * Contains shared functions used across the entire site,
- * such as dynamic component loading and navbar initialization.
+ * such as dynamic component loading, navbar initialization, and sound playback.
  */
+
+// --- SOUND FUNCTIONS ---
+
+/**
+ * Plays a sound effect.
+ * @param {string} soundId - The ID of the <audio> element to play.
+ */
+export function playSound(soundId) {
+    const sound = document.getElementById(soundId);
+    if (sound) {
+        sound.currentTime = 0; // Rewind to the start
+        sound.play().catch(error => console.error(`Audio play failed: ${error}`));
+    }
+}
+
+/**
+ * Stops a sound effect.
+ * @param {string} soundId - The ID of the <audio> element to stop.
+ */
+export function stopSound(soundId) {
+    const sound = document.getElementById(soundId);
+    if (sound) {
+        sound.pause();
+        sound.currentTime = 0; // Rewind to the start
+    }
+}
+
+
+// --- COMPONENT LOADING ---
 
 /**
  * Fetches HTML content from a file and injects it into a placeholder element.
@@ -28,9 +57,9 @@ export async function loadComponent(url, placeholderId) {
     }
 }
 
+// --- NAVBAR INITIALIZATION ---
 /**
- * Attaches event listeners for the mobile navbar, including the hamburger
- * button and logic to close the menu when clicking outside of it.
+ * Attaches event listeners for the mobile navbar.
  */
 export function initializeNavbar() {
     const hamburgerButton = document.getElementById('hamburger-button');
@@ -38,22 +67,17 @@ export function initializeNavbar() {
     const body = document.body;
 
     if (hamburgerButton && menu) {
-        // Listener to toggle the menu
         hamburgerButton.addEventListener('click', () => {
+            playSound('sound-click'); // Play click sound
             menu.classList.toggle('hidden');
             body.classList.toggle('menu-is-open');
         });
 
-        // Add a listener to the whole document to close the menu
         document.addEventListener('click', (e) => {
-            // Check if the menu is open
             const isMenuOpen = !menu.classList.contains('hidden');
-            
-            // Check if the click was inside the menu or on the hamburger button
             const isClickInsideMenu = menu.contains(e.target);
             const isClickOnButton = hamburgerButton.contains(e.target);
 
-            // If the menu is open and the click was outside of both the menu and the button, close it
             if (isMenuOpen && !isClickInsideMenu && !isClickOnButton) {
                 menu.classList.add('hidden');
                 body.classList.remove('menu-is-open');
