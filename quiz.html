@@ -10,104 +10,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="media/images/icon.png">
-    <style>
-        .quiz-option {
-            border: 2px solid #a48b00;
-            transition: background-color 0.2s, border-color 0.2s;
-        }
-        .quiz-option:hover {
-            background-color: rgba(255, 215, 0, 0.2);
-        }
-        .quiz-option.selected {
-            background-color: rgba(255, 215, 0, 0.4);
-            border-color: #ffd700;
-        }
-    </style>
 </head>
 <body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
 
     <div id="navbar-placeholder"></div>
 
     <main class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 text-white">
-        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-6">Knowledge Quiz</h2>
+        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-4">Knowledge Quiz</h2>
         
-        <div id="quiz-container" class="space-y-6">
-            <!-- Question 1 -->
-            <div class="question-block">
-                <p class="text-lg font-bold mb-3">1. If a slot machine hasn't paid out in a while, it is "due" for a win.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button class="quiz-option p-4 rounded-lg" data-question="1" data-answer="false">True</button>
-                    <button class="quiz-option p-4 rounded-lg" data-question="1" data-answer="true">False</button>
-                </div>
-            </div>
-            <!-- Question 2 -->
-            <div class="question-block">
-                <p class="text-lg font-bold mb-3">2. What does RTP (Return to Player) mean?</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button class="quiz-option p-4 rounded-lg" data-question="2" data-answer="true">The percentage of wagered money a machine is programmed to pay back over time.</button>
-                    <button class="quiz-option p-4 rounded-lg" data-question="2" data-answer="false">A guarantee of how much you will win in a session.</button>
-                </div>
+        <div class="mb-6">
+            <p id="progress-text" class="text-center text-yellow-200 opacity-80 mb-2">Question 1 of 5</p>
+            <div class="w-full bg-gray-700 rounded-full h-2.5">
+                <div id="progress-bar" class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
             </div>
         </div>
 
-        <div class="text-center mt-8">
-            <button id="submit-quiz" class="spin-button px-8 py-3 text-xl font-bold rounded-lg">Submit Answers</button>
-        </div>
+        <div id="quiz-container">
+            </div>
 
-        <div id="results-container" class="hidden text-center mt-6">
-            <h3 class="font-cinzel text-2xl text-yellow-300">Results</h3>
-            <p id="results-text" class="text-lg mt-2"></p>
-        </div>
-
-        <div class="text-center mt-8">
-            <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg">Back to Game</a>
-        </div>
     </main>
 
     <div id="footer-placeholder"></div>
-    <script>
+    
+    <script src="js/quiz.js"></script>
+    <script type="module">
+        import { loadComponent, initializeNavbar } from './js/utility.js';
+        
         document.addEventListener('DOMContentLoaded', () => {
-            const quizOptions = document.querySelectorAll('.quiz-option');
-            quizOptions.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Deselect sibling buttons
-                    const question = button.dataset.question;
-                    document.querySelectorAll(`.quiz-option[data-question="${question}"]`).forEach(b => b.classList.remove('selected'));
-                    // Select clicked button
-                    button.classList.add('selected');
-                });
+            // --- COMPONENT LOADING ---
+            loadComponent('components/navbar.html', 'navbar-placeholder').then(() => {
+                initializeNavbar();
             });
-
-            const submitButton = document.getElementById('submit-quiz');
-            submitButton.addEventListener('click', () => {
-                let score = 0;
-                const totalQuestions = document.querySelectorAll('.question-block').length;
-                
-                for(let i=1; i<=totalQuestions; i++){
-                    const selected = document.querySelector(`.quiz-option[data-question="${i}"].selected`);
-                    if(selected && selected.dataset.answer === 'true'){
-                        score++;
-                    }
-                }
-                
-                const resultsText = document.getElementById('results-text');
-                resultsText.textContent = `You scored ${score} out of ${totalQuestions}. Remember, knowledge is power when it comes to understanding the risks of gambling.`;
-                document.getElementById('results-container').classList.remove('hidden');
-            });
+            loadComponent('components/footer.html', 'footer-placeholder');
         });
-
-        // Simple component loader
-        async function loadComponent(url, placeholderId) {
-            try {
-                const response = await fetch(url);
-                const text = await response.text();
-                document.getElementById(placeholderId).innerHTML = text;
-            } catch (error) {
-                console.error(`Error loading component: ${error}`);
-            }
-        }
-        loadComponent('components/navbar.html', 'navbar-placeholder');
-        loadComponent('components/footer.html', 'footer-placeholder');
     </script>
 </body>
 </html>

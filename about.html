@@ -16,27 +16,31 @@
     <div id="navbar-placeholder"></div>
 
     <main class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 text-white">
-        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-6">About This Project</h2>
+        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-8">About This Project</h2>
 
         <div class="space-y-6 text-center">
-            <div class="message-box rounded-lg p-4">
+            
+            <div class="message-box rounded-lg p-6">
                 <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Our Mission</h3>
                 <p class="opacity-90">
-                    Gate of Olympus was created as an educational tool to raise awareness about the mechanics of slot machines and the risks associated with gambling. By simulating a real slot experience and revealing how the odds are manipulated, we hope to empower players with knowledge and promote responsible gaming habits.
+                    This project was created as an educational tool to raise awareness about the mechanics of slot machines and the risks associated with gambling. By simulating a slot experience and revealing how odds can be manipulated, we hope to empower players with knowledge and promote responsible gaming habits.
                 </p>
             </div>
-            <div class="message-box rounded-lg p-4">
+
+            <div class="message-box rounded-lg p-6">
+                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-3">Developer Profile</h3>
+                <div class="flex flex-col items-center">
+                    <p class="text-lg font-bold">M. Zainur Rifai</p>
+                    <p class="text-sm text-yellow-200 opacity-80">zainurrifaim@thursinaiibs.sch.id</p>
+                </div>
+            </div>
+
+            <div class="message-box rounded-lg p-6">
                 <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Get Help</h3>
                 <p class="opacity-90">
                     Gambling can be addictive. If you or someone you know is struggling, please don't hesitate to seek help. There are many free and confidential resources available.
                 </p>
-                 <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-300 hover:underline mt-2 inline-block">National Council on Problem Gambling</a>
-            </div>
-             <div class="message-box rounded-lg p-4">
-                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Developers</h3>
-                <p class="opacity-90">
-                    This project was developed by a team passionate about education and public health.
-                </p>
+                 <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-300 hover:underline mt-3 inline-block font-bold">National Council on Problem Gambling →</a>
             </div>
         </div>
 
@@ -46,19 +50,16 @@
     </main>
 
     <div id="footer-placeholder"></div>
-     <script>
-        // Simple component loader
-        async function loadComponent(url, placeholderId) {
-            try {
-                const response = await fetch(url);
-                const text = await response.text();
-                document.getElementById(placeholderId).innerHTML = text;
-            } catch (error) {
-                console.error(`Error loading component: ${error}`);
-            }
-        }
-        loadComponent('components/navbar.html', 'navbar-placeholder');
-        loadComponent('components/footer.html', 'footer-placeholder');
+     <script type="module">
+        import { loadComponent, initializeNavbar } from './js/utility.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- COMPONENT LOADING ---
+            loadComponent('components/navbar.html', 'navbar-placeholder').then(() => {
+                initializeNavbar();
+            });
+            loadComponent('components/footer.html', 'footer-placeholder');
+        });
     </script>
 </body>
 </html>

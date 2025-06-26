@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Educational Slot Game: Gate of Olympus</title>
     
-    <!-- External Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- Google Fonts & Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,55 +16,46 @@
 
 <body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
 
-    <!-- Navbar Placeholder -->
     <div id="navbar-placeholder"></div>
 
-    <!-- Main Game Container -->
     <div id="game-root" class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8">
 
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Game and Stats Column -->
             <main class="lg:col-span-2">
-                <!-- Slot Machine Grid -->
                 <div class="slot-grid mb-6">
                     <div id="slot1" class="slot">⚡</div>
                     <div id="slot2" class="slot">💎</div>
                     <div id="slot3" class="slot">🏛️</div>
                 </div>
 
-                <!-- Win/Lose Message -->
                 <div id="win-lose-message" class="text-center h-8 text-3xl font-cinzel font-bold mb-4"></div>
 
-                <!-- Spin Button -->
                 <button id="spin-button" class="spin-button w-full py-4 text-2xl font-bold rounded-lg">
                     SPIN (COST: 50)
                 </button>
 
-                <!-- Real-time Statistics -->
                 <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     <div class="stat-box rounded-lg p-3">
                         <p class="text-sm text-yellow-200 opacity-70">Credits</p>
-                        <p id="credits" class="text-2xl font-bold">1000</p>
+                        <p id="credits" class="text-2xl font-bold" aria-live="polite">1000</p>
                     </div>
                     <div class="stat-box rounded-lg p-3">
                         <p class="text-sm text-yellow-200 opacity-70">Spins</p>
-                        <p id="spin-count" class="text-2xl font-bold">0</p>
+                        <p id="spin-count" class="text-2xl font-bold" aria-live="polite">0</p>
                     </div>
                     <div class="stat-box rounded-lg p-3">
                         <p class="text-sm text-green-300 opacity-70">Wins</p>
-                        <p id="wins" class="text-2xl font-bold">0</p>
+                        <p id="wins" class="text-2xl font-bold" aria-live="polite">0</p>
                     </div>
                     <div class="stat-box rounded-lg p-3">
                         <p class="text-sm text-red-300 opacity-70">Losses</p>
-                        <p id="losses" class="text-2xl font-bold">0</p>
+                        <p id="losses" class="text-2xl font-bold" aria-live="polite">0</p>
                     </div>
                 </div>
             </main>
 
-            <!-- Educational Info Column -->
             <aside class="flex flex-col gap-6">
-                <!-- Visual Odds Display -->
                 <div id="odds-display" class="stat-box rounded-lg p-4 text-center odds-display-hook">
                     <h2 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Current Win Odds</h2>
                     <p id="win-odds-percent" class="text-4xl font-bold mb-2">90%</p>
@@ -75,7 +64,6 @@
                     </p>
                 </div>
 
-                <!-- Educational Messages -->
                 <div class="message-box rounded-lg p-4">
                     <h3 class="font-cinzel text-lg font-bold text-yellow-300 mb-2">How It Works</h3>
                     <p id="educational-message" class="text-sm opacity-90">
@@ -86,10 +74,8 @@
         </div>
     </div>
 
-    <!-- Footer Placeholder -->
     <div id="footer-placeholder"></div>
 
-    <!-- Phase Change Modal -->
     <div id="phase-modal" class="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content border-2 border-yellow-400 rounded-2xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl">
             <h2 id="modal-title" class="font-cinzel text-2xl md:text-3xl text-yellow-300 mb-4"></h2>
@@ -98,7 +84,6 @@
         </div>
     </div>
 
-    <!-- JavaScript Files -->
     <script src="js/ui.js" type="module"></script>
     <script src="js/main.js" type="module"></script>
 </body>

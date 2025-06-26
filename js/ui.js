@@ -76,6 +76,33 @@ export const updateSpinButtonState = (elements, state, costPerSpin) => {
     }
 };
 
+const phases = [
+    {
+        limit: 5,
+        className: 'odds-display-hook',
+        explanation: "<strong>Phase 1: The Hook.</strong> Odds are high to make you feel like winning is easy.",
+        odds: 0.9,
+    },
+    {
+        limit: 10,
+        className: 'odds-display-transition',
+        explanation: "<strong>Phase 2: Transition.</strong> The odds have dropped significantly.",
+        educationalMessage: "<strong>The odds just dropped!</strong> This subtle shift is designed to keep you playing.",
+        modalTitle: "Phase 2: Odds are Changing",
+        modalBody: "Win probability dropped from <strong>90% to 50%</strong>. Real games do this to make you chase your 'luck'.",
+        odds: 0.5,
+    },
+    {
+        limit: Infinity,
+        className: 'odds-display-house',
+        explanation: "<strong>Phase 3: House Advantage.</strong> Odds are low, reflecting how real slots work.",
+        educationalMessage: "<strong>The House Always Wins.</strong> With 20% odds, you are statistically expected to lose over time.",
+        modalTitle: "Phase 3: The House Advantage",
+        modalBody: "Win odds have plummeted to <strong>20%</strong>. This is the realistic phase where the house has a massive mathematical edge.",
+        odds: 0.2,
+    }
+];
+
 /**
  * Updates the educational info panel based on the current game phase.
  * @param {object} elements - The DOM elements object.
@@ -85,24 +112,14 @@ export const updateSpinButtonState = (elements, state, costPerSpin) => {
 export const updateEducationalInfo = (elements, spinCount, odds) => {
     elements.winOddsPercent.textContent = `${Math.round(odds * 100)}%`;
     
-    elements.oddsDisplay.classList.remove('odds-display-hook', 'odds-display-transition', 'odds-display-house');
+    const currentPhase = phases.find(p => spinCount < p.limit);
 
-    if (spinCount < 5) {
-        elements.oddsDisplay.classList.add('odds-display-hook');
-        elements.oddsExplanation.innerHTML = "<strong>Phase 1: The Hook.</strong> Odds are high to make you feel like winning is easy.";
-    } else if (spinCount < 10) {
-        elements.oddsDisplay.classList.add('odds-display-transition');
-        elements.oddsExplanation.innerHTML = "<strong>Phase 2: Transition.</strong> The odds have dropped significantly.";
-        if(spinCount === 5) {
-            elements.educationalMessage.innerHTML = "<strong>The odds just dropped!</strong> This subtle shift is designed to keep you playing.";
-            showModal(elements, "Phase 2: Odds are Changing", "Win probability dropped from <strong>90% to 50%</strong>. Real games do this to make you chase your 'luck'.");
-        }
-    } else {
-        elements.oddsDisplay.classList.add('odds-display-house');
-        elements.oddsExplanation.innerHTML = "<strong>Phase 3: House Advantage.</strong> Odds are low, reflecting how real slots work.";
-        if(spinCount === 10) {
-            elements.educationalMessage.innerHTML = "<strong>The House Always Wins.</strong> With 20% odds, you are statistically expected to lose over time.";
-            showModal(elements, "Phase 3: The House Advantage", "Win odds have plummeted to <strong>20%</strong>. This is the realistic phase where the house has a massive mathematical edge.");
-        }
+    elements.oddsDisplay.classList.remove('odds-display-hook', 'odds-display-transition', 'odds-display-house');
+    elements.oddsDisplay.classList.add(currentPhase.className);
+    elements.oddsExplanation.innerHTML = currentPhase.explanation;
+
+    if (currentPhase.educationalMessage && spinCount === (phases[phases.indexOf(currentPhase)-1]?.limit || 0)) {
+        elements.educationalMessage.innerHTML = currentPhase.educationalMessage;
+        showModal(elements, currentPhase.modalTitle, currentPhase.modalBody);
     }
 };
