@@ -167,6 +167,33 @@ body.menu-is-open {
     border-bottom: 5px solid #444;
 }
 
+/* Cash Out Button Styles */
+.cashout-button {
+    background-color: #1e40af; /* A contrasting blue */
+    color: #eff6ff;
+    border: 2px solid #1d4ed8;
+    border-bottom: 5px solid #1e3a8a;
+    transition: all 0.2s ease;
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+}
+.cashout-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-bottom: 7px solid #1e3a8a;
+    filter: brightness(1.1);
+}
+.cashout-button:active:not(:disabled) {
+    transform: translateY(1px);
+    border-bottom: 5px solid #1e3a8a;
+}
+.cashout-button:disabled {
+    background: #555;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+    border-bottom: 5px solid #444;
+}
+
+
 /* UI Box Styles */
 .stat-box {
     background-color: rgba(0,0,0,0.3);
@@ -219,6 +246,16 @@ body.menu-is-open {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+/* Chart Container in Modal */
+.chart-container {
+    position: relative;
+    height: 250px; /* Adjust as needed */
+    width: 100%;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 /* This class will be toggled by JS to show the menu */
@@ -342,4 +379,14 @@ body.menu-is-open {
     15% { opacity: 1; }
     85% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+/* --- MOBILE RESPONSIVE STYLES --- */
+@media (max-width: 640px) {
+    /* Make Spin and Cash Out buttons smaller on mobile */
+    #spin-button, #cashout-button {
+        padding-top: 0.75rem;      /* 12px */
+        padding-bottom: 0.75rem;   /* 12px */
+        font-size: 1.125rem;       /* 18px */
+    }
 }

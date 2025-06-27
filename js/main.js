@@ -63,6 +63,7 @@ function initializeGame() {
         wins: 0,
         losses: 0,
         isSpinning: false,
+        creditHistory: [1000], // Start with the initial credits
     };
 
     // --- GAME CONSTANTS ---
@@ -83,11 +84,23 @@ function initializeGame() {
         playSound('sound-win');
         state.wins++;
         const winningSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-        const prize = 150 + Math.floor(Math.random() * 10) * 10;
+        
+        // --- REVISED PRIZE FORMULA ---
+        // Prizes now range from 50 to 100
+        const prize = 50 + Math.floor(Math.random() * 6) * 10; 
+        
         state.credits += prize;
         elements.slots.forEach(slot => slot.textContent = winningSymbol);
-        elements.winLoseMessage.textContent = `YOU WON ${prize}!`;
-        elements.winLoseMessage.classList.add('win-message', 'text-green-400');
+        
+        // Check for a "loss disguised as a win"
+        if (prize <= COST_PER_SPIN) {
+            elements.winLoseMessage.textContent = `WIN: ${prize} (BUT YOU LOST CREDITS)`;
+            elements.winLoseMessage.classList.add('win-message', 'text-orange-400');
+        } else {
+            elements.winLoseMessage.textContent = `YOU WON ${prize}!`;
+            elements.winLoseMessage.classList.add('win-message', 'text-green-400');
+        }
+
 
         // Remove the lightning class after the animation finishes (duration is 700ms in CSS)
         setTimeout(() => {
@@ -105,7 +118,7 @@ function initializeGame() {
         } while (elements.slots[0].textContent === elements.slots[1].textContent && elements.slots[1].textContent === elements.slots[2].textContent);
         
         elements.winLoseMessage.textContent = 'TRY AGAIN';
-        elements.winLoseMessage.classList.remove('win-message');
+        elements.winLoseMessage.classList.remove('win-message', 'text-green-400', 'text-orange-400'); // Clear all colors
         elements.winLoseMessage.classList.add('text-red-500');
     };
 
@@ -121,6 +134,7 @@ function initializeGame() {
         
         // 2. Update UI for spinning state
         elements.winLoseMessage.textContent = '';
+        elements.winLoseMessage.classList.remove('text-green-400', 'text-red-500', 'text-orange-400');
         ui.updateStatsDisplays(elements, state);
         ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
         ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
@@ -153,16 +167,44 @@ function initializeGame() {
             }, 1000);
 
             state.isSpinning = false;
+            state.creditHistory.push(state.credits); // Record credits after spin resolves
             ui.updateStatsDisplays(elements, state);
             ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
         }, 1500);
     };
 
+    const handleCashOut = () => {
+        playSound('sound-click');
+        elements.cashoutModal.classList.remove('hidden');
+
+        const startingCredits = state.creditHistory[0];
+        const finalCredits = state.credits;
+        const netChange = finalCredits - startingCredits;
+        const resultText = netChange >= 0 ? `profited <span class="text-green-400">${netChange}</span>` : `lost <span class="text-red-400">${Math.abs(netChange)}</span>`;
+
+        elements.cashoutSummary.innerHTML = `You started with <strong>${startingCredits}</strong> credits and ended with <strong>${finalCredits}</strong>. Overall, you ${resultText} credits.`;
+
+        // Disable game buttons
+        elements.spinButton.disabled = true;
+        elements.cashoutButton.disabled = true;
+        
+        // Render the chart
+        ui.renderCreditsChart(elements, state.creditHistory);
+    };
+
     // --- EVENT LISTENERS ---
     elements.spinButton.addEventListener('click', handleSpin);
+    elements.cashoutButton.addEventListener('click', handleCashOut);
     elements.modalCloseButton.addEventListener('click', () => {
         playSound('sound-click');
         ui.hideModal(elements);
+    });
+
+    // REVISED: Event listener for the new "Play Again" button
+    elements.playAgainButton.addEventListener('click', () => {
+        playSound('sound-click');
+        // The simplest and most effective way to reset the game to its initial state
+        location.reload();
     });
 
     // --- INITIAL RENDER ---

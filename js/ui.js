@@ -10,6 +10,7 @@
  */
 export const getDOMElements = () => ({
     spinButton: document.getElementById('spin-button'),
+    cashoutButton: document.getElementById('cashout-button'),
     slots: [document.getElementById('slot1'), document.getElementById('slot2'), document.getElementById('slot3')],
     creditsDisplay: document.getElementById('credits'),
     spinCountDisplay: document.getElementById('spin-count'),
@@ -24,8 +25,76 @@ export const getDOMElements = () => ({
     modalTitle: document.getElementById('modal-title'),
     modalBody: document.getElementById('modal-body'),
     modalCloseButton: document.getElementById('modal-close-button'),
-    lightningOverlay: document.getElementById('lightning-overlay'), // For the win animation
+    lightningOverlay: document.getElementById('lightning-overlay'),
+    // Cashout Modal Elements
+    cashoutModal: document.getElementById('cashout-modal'),
+    cashoutSummary: document.getElementById('cashout-summary'),
+    playAgainButton: document.getElementById('play-again-button'), // REVISED
+    creditsChartCanvas: document.getElementById('credits-chart'),
 });
+
+let creditsChart = null; // To hold the chart instance
+
+/**
+ * Renders or updates the credits history chart.
+ * @param {object} elements - The DOM elements object.
+ * @param {Array<number>} creditHistory - An array of credit values over time.
+ */
+export const renderCreditsChart = (elements, creditHistory) => {
+    const ctx = elements.creditsChartCanvas.getContext('2d');
+    
+    // Destroy previous chart instance if it exists
+    if (creditsChart) {
+        creditsChart.destroy();
+    }
+
+    const labels = creditHistory.map((_, index) => `Spin ${index}`);
+
+    creditsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Credits',
+                data: creditHistory,
+                borderColor: '#ffd700', // Gold color
+                backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                fill: true,
+                tension: 0.1,
+                pointBackgroundColor: '#ffd700',
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    ticks: {
+                        color: '#f0e6ff' // Light text color
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#f0e6ff' // Light text color
+                    },
+                     grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+};
+
 
 // --- MODAL UI FUNCTIONS ---
 /**
@@ -68,11 +137,13 @@ export const updateStatsDisplays = (elements, state) => {
  * @param {number} costPerSpin - The cost of a single spin.
  */
 export const updateSpinButtonState = (elements, state, costPerSpin) => {
-    if (state.credits < costPerSpin) {
-        elements.spinButton.disabled = true;
+    const outOfCredits = state.credits < costPerSpin;
+    elements.spinButton.disabled = state.isSpinning || outOfCredits;
+    elements.cashoutButton.disabled = state.isSpinning;
+    
+    if (outOfCredits && !state.isSpinning) {
         elements.spinButton.textContent = 'INSUFFICIENT CREDITS';
     } else {
-        elements.spinButton.disabled = state.isSpinning;
         elements.spinButton.textContent = `SPIN (COST: ${costPerSpin})`;
     }
 };
