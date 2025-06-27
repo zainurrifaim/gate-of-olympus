@@ -246,3 +246,33 @@ body.menu-is-open {
     opacity: 0.9;
     line-height: 1.6;
 }
+
+/* Updated Lightning Win Animation */
+#lightning-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../media/images/lightning.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+}
+
+#lightning-overlay.active {
+    /* The new animation combining blinking and the image */
+    animation: lightning-blink-image 0.8s ease-out;
+}
+
+@keyframes lightning-blink-image {
+    0% { opacity: 0; }
+    5% { opacity: 0.8; }
+    10% { opacity: 0.2; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { opacity: 0; }
+}

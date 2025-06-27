@@ -24,6 +24,7 @@ export const getDOMElements = () => ({
     modalTitle: document.getElementById('modal-title'),
     modalBody: document.getElementById('modal-body'),
     modalCloseButton: document.getElementById('modal-close-button'),
+    lightningOverlay: document.getElementById('lightning-overlay'), // For the win animation
 });
 
 // --- MODAL UI FUNCTIONS ---
@@ -76,6 +77,7 @@ export const updateSpinButtonState = (elements, state, costPerSpin) => {
     }
 };
 
+// --- EDUCATIONAL INFO LOGIC ---
 const phases = [
     {
         limit: 5,
@@ -118,7 +120,11 @@ export const updateEducationalInfo = (elements, spinCount, odds) => {
     elements.oddsDisplay.classList.add(currentPhase.className);
     elements.oddsExplanation.innerHTML = currentPhase.explanation;
 
-    if (currentPhase.educationalMessage && spinCount === (phases[phases.indexOf(currentPhase)-1]?.limit || 0)) {
+    // Trigger the educational modal only at the start of a new phase
+    const previousPhase = phases[phases.indexOf(currentPhase) - 1];
+    const newPhaseTriggerSpin = previousPhase ? previousPhase.limit : 0;
+
+    if (currentPhase.modalTitle && spinCount === newPhaseTriggerSpin) {
         elements.educationalMessage.innerHTML = currentPhase.educationalMessage;
         showModal(elements, currentPhase.modalTitle, currentPhase.modalBody);
     }

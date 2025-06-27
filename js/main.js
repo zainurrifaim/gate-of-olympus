@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Make sure the game initializes after the footer is loaded
-    // to ensure all elements are available.
+    // to ensure all elements are available for the game logic.
     loadComponent('components/footer.html', 'footer-placeholder').then(() => {
         initializeGame();
     });
@@ -47,6 +47,9 @@ function initializeGame() {
     };
 
     const handleWin = () => {
+        // Trigger the lightning image animation
+        elements.lightningOverlay.classList.add('active');
+        
         playSound('sound-win');
         state.wins++;
         const winningSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
@@ -55,6 +58,11 @@ function initializeGame() {
         elements.slots.forEach(slot => slot.textContent = winningSymbol);
         elements.winLoseMessage.textContent = `YOU WON ${prize}!`;
         elements.winLoseMessage.classList.add('win-message', 'text-green-400');
+
+        // Remove the lightning class after the animation finishes (duration is 700ms in CSS)
+        setTimeout(() => {
+            elements.lightningOverlay.classList.remove('active');
+        }, 700);
     };
 
     const handleLoss = () => {
@@ -74,20 +82,20 @@ function initializeGame() {
     const handleSpin = () => {
         if (state.isSpinning || state.credits < COST_PER_SPIN) return;
 
-        // --- 1. SETUP THE SPIN ---
+        // 1. Setup the spin
         playSound('sound-click');
         playSound('sound-spin');
         state.isSpinning = true;
         state.spinCount++;
         state.credits -= COST_PER_SPIN;
         
-        // --- 2. UPDATE UI FOR SPINNING STATE ---
+        // 2. Update UI for spinning state
         elements.winLoseMessage.textContent = '';
         ui.updateStatsDisplays(elements, state);
         ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
         ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
 
-        // --- 3. START THE VISUAL SPINNING ---
+        // 3. Start the visual spinning
         let spinInterval = setInterval(() => {
             elements.slots.forEach(slot => {
                 slot.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
@@ -95,7 +103,7 @@ function initializeGame() {
             });
         }, 100);
 
-        // --- 4. DETERMINE AND DISPLAY THE OUTCOME ---
+        // 4. Determine and display the outcome
         setTimeout(() => {
             clearInterval(spinInterval);
             stopSound('sound-spin');
@@ -109,7 +117,7 @@ function initializeGame() {
                 handleLoss();
             }
             
-            // --- 5. CLEANUP AND RESET FOR NEXT SPIN ---
+            // 5. Cleanup and reset for next spin
             setTimeout(() => {
                 elements.winLoseMessage.classList.remove('win-message');
             }, 1000);
