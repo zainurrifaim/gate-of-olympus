@@ -4,10 +4,13 @@
  */
 import * as ui from './ui.js';
 import { loadComponent, initializeNavbar, playSound, stopSound } from './utility.js';
+import { initI18n, getString, translatePage } from './i18n.js';
 
 // --- INITIALIZATION ---
-document.addEventListener('DOMContentLoaded', () => {
-    
+document.addEventListener('DOMContentLoaded', async () => {
+    // Must initialize i18n first
+    await initI18n();
+
     const entryOverlay = document.getElementById('entry-overlay');
     const entryButton = document.getElementById('entry-button');
     const introOverlay = document.getElementById('intro-overlay');
@@ -25,14 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2500);
     }, { once: true });
 
-
-    loadComponent('components/navbar.html', 'navbar-placeholder').then(() => {
-        initializeNavbar();
-    });
-    
-    loadComponent('components/footer.html', 'footer-placeholder').then(() => {
-        initializeGame();
-    });
+    // Load components and then initialize the game
+    await loadComponent('components/navbar.html', 'navbar-placeholder');
+    initializeNavbar();
+    await loadComponent('components/footer.html', 'footer-placeholder');
+    translatePage();
+    initializeGame();
 });
 
 /**
@@ -81,7 +82,7 @@ function initializeGame() {
      */
     function populateReels() {
         reelTracks.forEach(track => {
-            track.innerHTML = ''; // Clear existing symbols
+            track.innerHTML = '';
             for (let i = 0; i < REEL_LENGTH; i++) {
                 const symbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
                 const symbolDiv = document.createElement('div');
@@ -90,7 +91,6 @@ function initializeGame() {
                 track.appendChild(symbolDiv);
             }
         });
-        // Calculate symbol height for positioning
         const firstSymbol = reelTracks[0].querySelector('.reel-symbol');
         if (firstSymbol) {
             symbolHeight = firstSymbol.offsetHeight;
@@ -105,26 +105,22 @@ function initializeGame() {
 
     const handleWin = (winSymbol) => {
         state.wins++;
-        
         const prize = PAYOUTS[winSymbol];
         state.credits += prize;
-        
-        // --- CORRECTED LOGIC ---
-        // Subtract the prize from the house's earnings.
         state.houseEarnings -= prize;
 
         if (prize <= COST_PER_SPIN) {
-            elements.winLoseMessage.textContent = `WIN: ${prize} (BUT YOU LOST CREDITS)`;
+            elements.winLoseMessage.innerHTML = `${getString('win_message_loss', { prize })} <br> <span class="ldw-indicator">${getString('loss_disguised_as_win')}</span>`;
             elements.winLoseMessage.classList.add('win-message', 'text-orange-400');
         } else {
-            elements.winLoseMessage.textContent = `YOU WON ${prize}!`;
+            elements.winLoseMessage.textContent = `${getString('win_message_generic')} ${prize}!`;
             elements.winLoseMessage.classList.add('win-message', 'text-green-400');
         }
     };
 
     const handleLoss = () => {
         state.losses++;
-        elements.winLoseMessage.textContent = 'SO CLOSE!';
+        elements.winLoseMessage.textContent = getString('lose_message');
         elements.winLoseMessage.classList.remove('win-message', 'text-green-400', 'text-orange-400');
         elements.winLoseMessage.classList.add('text-red-500');
     };
@@ -135,10 +131,14 @@ function initializeGame() {
         state.isSpinning = true;
         state.spinCount++;
         state.credits -= COST_PER_SPIN;
-        
-        // The house always collects the bet amount.
         state.houseEarnings += COST_PER_SPIN;
         
+        // Animate House Earnings
+        elements.houseEarningsDisplay.classList.add('animate-ping-once');
+        setTimeout(() => {
+            elements.houseEarningsDisplay.classList.remove('animate-ping-once');
+        }, 1000);
+
         playSound('sound-spin');
         
         elements.winLoseMessage.textContent = '';
@@ -206,7 +206,7 @@ function initializeGame() {
                         playSound('sound-lose');
                     }
                     
-                    const animationDuration = 1000;
+                    const animationDuration = 100;
                     setTimeout(() => {
                         if (didWin) {
                             handleWin(winSymbol);
@@ -236,9 +236,15 @@ function initializeGame() {
         const startingCredits = state.creditHistory[0];
         const finalCredits = state.credits;
         const netChange = finalCredits - startingCredits;
-        const resultText = netChange >= 0 ? `profited <span class="text-green-400">${netChange}</span>` : `lost <span class="text-red-400">${Math.abs(netChange)}</span>`;
+        
+        const resultKey = netChange >= 0 ? 'cashout_profit' : 'cashout_loss';
+        const resultText = getString(resultKey, { change: Math.abs(netChange) });
 
-        elements.cashoutSummary.innerHTML = `You started with <strong>${startingCredits}</strong> credits and ended with <strong>${finalCredits}</strong>. Overall, you ${resultText} credits.`;
+        elements.cashoutSummary.innerHTML = getString('cashout_summary', {
+            start: startingCredits,
+            end: finalCredits,
+            result: resultText
+        });
 
         elements.spinButton.disabled = true;
         elements.cashoutButton.disabled = true;
@@ -249,12 +255,17 @@ function initializeGame() {
     const realityCheck = () => {
         const timeDiff = new Date() - state.startTime;
         const minutes = Math.floor(timeDiff / 60000);
-        const netChange = state.credits - 1000;
-        const resultText = netChange >= 0 ? `profited <span class="text-green-400">${netChange}</span>` : `lost <span class="text-red-400">${Math.abs(netChange)}</span>`;
-        
-        if (minutes < 1) return; // Don't show the modal before at least one minute has passed
+        if (minutes < 1) return;
 
-        const message = `You have been playing for <strong>${minutes} minute${minutes === 1 ? '' : 's'}</strong>. You have ${resultText} credits.`;
+        const netChange = state.credits - 1000;
+        const resultKey = netChange >= 0 ? 'cashout_profit' : 'cashout_loss';
+        const resultText = getString(resultKey, { change: Math.abs(netChange) });
+        
+        const message = getString('reality_check_body', {
+            minutes: minutes,
+            s: getString('lang') === 'en' ? (minutes === 1 ? '' : 's') : '', // Handle plural 's' for English only
+            result: resultText
+        });
         ui.showRealityCheckModal(elements, message);
     };
 
@@ -281,6 +292,5 @@ function initializeGame() {
     ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
     ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
 
-    // Start the reality check timer
     setInterval(realityCheck, REALITY_CHECK_INTERVAL);
 }

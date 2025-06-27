@@ -19,7 +19,7 @@
 <body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
 
     <div id="entry-overlay">
-        <button id="entry-button" class="spin-button text-2xl font-bold rounded-lg px-10 py-5">Enter the Gates</button>
+        <button id="entry-button" class="spin-button text-2xl font-bold rounded-lg px-10 py-5" data-i18n-key="entry_button">Enter the Gates</button>
     </div>
 
     <div id="intro-overlay" class="hidden">
@@ -29,7 +29,6 @@
     <div id="navbar-placeholder"></div>
 
     <div id="game-root" class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 initially-hidden">
-
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <main class="lg:col-span-2">
@@ -45,33 +44,31 @@
                     </div>
                 </div>
 
-                <div id="win-lose-message" class="text-center h-8 text-3xl font-cinzel font-bold mb-4"></div>
+                <div id="win-lose-message" class="text-center text-3xl font-cinzel font-bold mb-4"></div>
 
                 <div class="grid grid-cols-2 gap-4">
                     <button id="spin-button" class="spin-button w-full py-4 text-2xl font-bold rounded-lg">
-                        SPIN (COST: 50)
-                    </button>
-                    <button id="cashout-button" class="cashout-button w-full py-4 text-2xl font-bold rounded-lg">
+                        </button>
+                    <button id="cashout-button" class="cashout-button w-full py-4 text-2xl font-bold rounded-lg" data-i18n-key="cash_out_button">
                         CASH OUT
                     </button>
                 </div>
 
-
                 <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     <div class="stat-box rounded-lg p-3">
-                        <p class="text-sm text-yellow-200 opacity-70">Credits</p>
+                        <p class="text-sm text-yellow-200 opacity-70" data-i18n-key="credits_label">Credits</p>
                         <p id="credits" class="text-2xl font-bold" aria-live="polite">1000</p>
                     </div>
                     <div class="stat-box rounded-lg p-3">
-                        <p class="text-sm text-yellow-200 opacity-70">Spins</p>
+                        <p class="text-sm text-yellow-200 opacity-70" data-i18n-key="spins_label">Spins</p>
                         <p id="spin-count" class="text-2xl font-bold" aria-live="polite">0</p>
                     </div>
                     <div class="stat-box rounded-lg p-3">
-                        <p class="text-sm text-green-300 opacity-70">Wins</p>
+                        <p class="text-sm text-green-300 opacity-70" data-i18n-key="wins_label">Wins</p>
                         <p id="wins" class="text-2xl font-bold" aria-live="polite">0</p>
                     </div>
                     <div class="stat-box rounded-lg p-3">
-                        <p class="text-sm text-red-300 opacity-70">Losses</p>
+                        <p class="text-sm text-red-300 opacity-70" data-i18n-key="losses_label">Losses</p>
                         <p id="losses" class="text-2xl font-bold" aria-live="polite">0</p>
                     </div>
                 </div>
@@ -79,28 +76,26 @@
 
             <aside class="flex flex-col gap-6">
                 <div id="odds-display" class="stat-box rounded-lg p-4 text-center odds-display-hook">
-                    <h2 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Current Win Odds</h2>
+                    <h2 class="font-cinzel text-xl font-bold text-yellow-300 mb-2" data-i18n-key="win_odds_label">Current Win Odds</h2>
                     <p id="win-odds-percent" class="text-4xl font-bold mb-2">90%</p>
-                    <p id="odds-explanation" class="text-sm opacity-90">
-                        <strong>Phase 1: The Hook.</strong> Odds are extremely high to give you a rush and make you feel like winning is easy.
-                    </p>
+                    <p id="odds-explanation" class="text-sm opacity-90" data-i18n-key="phase1_explanation">
+                        </p>
                 </div>
 
-                <div class="message-box rounded-lg p-4">
-                    <h3 class="font-cinzel text-lg font-bold text-yellow-300 mb-2">How It Works</h3>
-                    <p id="educational-message" class="text-sm opacity-90">
-                        This game demonstrates how slot machines can be designed to manipulate players. Pay attention to how the odds and your feelings change as you play.
-                    </p>
+                <div class="message-box rounded-lg p-4 text-center">
+                    <h3 class="font-cinzel text-lg font-bold text-yellow-300 mb-2" data-i18n-key="how_it_works_label">How It Works</h3>
+                    <p id="educational-message" class="text-sm opacity-90" data-i18n-key="educational_message_default">
+                        </p>
                 </div>
                 
                 <div class="payouts-box rounded-lg p-4">
-                    <h3 class="font-cinzel text-lg font-bold text-yellow-300 mb-2 text-center">Symbol Payouts</h3>
+                    <h3 class="font-cinzel text-lg font-bold text-yellow-300 mb-2 text-center" data-i18n-key="payouts_label">Symbol Payouts</h3>
                     <div id="payouts-info" class="text-sm opacity-90">
                         </div>
                 </div>
 
                 <div id="house-edge-display" class="stat-box rounded-lg p-4 text-center">
-                    <h3 class="font-cinzel text-lg font-bold text-red-300 mb-2">House Earnings</h3>
+                    <h3 class="font-cinzel text-lg font-bold text-red-300 mb-2" data-i18n-key="house_earnings_label">House Earnings</h3>
                     <p id="house-earnings" class="text-2xl font-bold">0</p>
                 </div>
             </aside>
@@ -113,32 +108,31 @@
         <div class="modal-content border-2 border-yellow-400 rounded-2xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl">
             <h2 id="modal-title" class="font-cinzel text-2xl md:text-3xl text-yellow-300 mb-4"></h2>
             <p id="modal-body" class="text-base md:text-lg text-gray-200 mb-6"></p>
-            <button id="modal-close-button" class="spin-button px-8 py-3 text-xl font-bold rounded-lg">Continue</button>
+            <button id="modal-close-button" class="spin-button px-8 py-3 text-xl font-bold rounded-lg" data-i18n-key="play_again_button">Continue</button>
         </div>
     </div>
 
     <div id="cashout-modal" class="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content border-2 border-yellow-400 rounded-2xl p-6 md:p-8 max-w-2xl w-full text-center shadow-2xl">
-            <h2 class="font-cinzel text-2xl md:text-3xl text-yellow-300 mb-4">Session Results</h2>
+            <h2 class="font-cinzel text-2xl md:text-3xl text-yellow-300 mb-4" data-i18n-key="cashout_modal_title">Session Results</h2>
             <p id="cashout-summary" class="text-base md:text-lg text-gray-200 mb-6"></p>
             <div class="chart-container mb-6">
                 <canvas id="credits-chart"></canvas>
             </div>
-            <p class="text-sm opacity-80 mb-6">This chart shows your credit balance after each spin. Notice how even with wins, the overall trend can be downward.</p>
-            <button id="play-again-button" class="spin-button px-8 py-3 text-xl font-bold rounded-lg">Play Again</button>
+            <p class="text-sm opacity-80 mb-6" data-i18n-key="cashout_chart_explainer"></p>
+            <button id="play-again-button" class="spin-button px-8 py-3 text-xl font-bold rounded-lg" data-i18n-key="play_again_button">Play Again</button>
         </div>
     </div>
 
     <div id="reality-check-modal" class="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden">
         <div class="modal-content border-2 border-blue-400 rounded-2xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl">
-            <h2 class="font-cinzel text-2xl md:text-3xl text-blue-300 mb-4">Reality Check</h2>
+            <h2 class="font-cinzel text-2xl md:text-3xl text-blue-300 mb-4" data-i18n-key="reality_check_title">Reality Check</h2>
             <p id="reality-check-body" class="text-base md:text-lg text-gray-200 mb-6"></p>
-            <button id="reality-check-close-button" class="cashout-button px-8 py-3 text-xl font-bold rounded-lg">Continue Playing</button>
+            <button id="reality-check-close-button" class="cashout-button px-8 py-3 text-xl font-bold rounded-lg" data-i18n-key="reality_check_continue_button">Continue Playing</button>
         </div>
     </div>
 
     <div id="lightning-overlay"></div>
-    
 
     <audio id="sound-click" src="media/audio/click.mp3" preload="auto"></audio>
     <audio id="sound-spin" src="media/audio/spin.mp3" preload="auto"></audio>
@@ -146,6 +140,7 @@
     <audio id="sound-lose" src="media/audio/lose.mp3" preload="auto"></audio>
     <audio id="sound-lightning" src="media/audio/lightning.mp3" preload="auto"></audio>
     
+    <script src="js/i18n.js" type="module"></script>
     <script src="js/ui.js" type="module"></script>
     <script src="js/main.js" type="module"></script>
 </body>

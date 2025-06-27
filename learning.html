@@ -16,40 +16,40 @@
     <div id="navbar-placeholder"></div>
 
     <main class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 text-white">
-        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-8">Learning Center</h2>
+        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-8" data-i18n-key="learning_center_title"></h2>
 
         <div class="space-y-4" id="learning-accordion">
             <div class="accordion-item">
                 <button class="accordion-header">
-                    <span>⚡ What is a Random Number Generator (RNG)?</span>
+                    <span data-i18n-key="learning_rng_title"></span>
                     <span class="accordion-icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Every modern slot machine uses an RNG. It's a computer algorithm that generates thousands of random numbers per second. When you press "spin," the machine uses the most recent number to determine the outcome. This means each spin is completely independent and unpredictable. There's no such thing as a "hot" or "cold" machine.</p>
+                    <p data-i18n-key="learning_rng_text"></p>
                 </div>
             </div>
             <div class="accordion-item">
                 <button class="accordion-header">
-                    <span>🏛️ The House Edge Explained</span>
+                    <span data-i18n-key="learning_edge_title"></span>
                     <span class="accordion-icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>The "house edge" is the mathematical advantage the casino has on any given bet. For slot machines, this is represented by the Return to Player (RTP) percentage. An RTP of 95% means that, over millions of spins, the machine is programmed to pay back 95% of all money wagered. The remaining 5% is the casino's profit. In the long run, the house always wins.</p>
+                    <p data-i18n-key="learning_edge_text"></p>
                 </div>
             </div>
             <div class="accordion-item">
                 <button class="accordion-header">
-                    <span>💎 The Psychology of Gambling</span>
+                    <span data-i18n-key="learning_psychology_title"></span>
                     <span class="accordion-icon">+</span>
                 </button>
                 <div class="accordion-content">
-                    <p>Gambling is designed to be psychologically appealing. Flashing lights, exciting sounds, and "near misses" all trigger dopamine releases in your brain, making you want to play more. "Losses disguised as wins" (where you win back less than your bet) can also trick you into feeling like you're winning when you're actually losing money.</p>
+                    <p data-i18n-key="learning_psychology_text"></p>
                 </div>
             </div>
         </div>
 
         <div class="text-center mt-8">
-            <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg">Back to Game</a>
+            <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg" data-i18n-key="back_to_game_button"></a>
         </div>
     </main>
 
@@ -57,15 +57,15 @@
 
     <script type="module">
         import { loadComponent, initializeNavbar } from './js/utility.js';
+        import { initI18n, translatePage } from './js/i18n.js';
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- COMPONENT LOADING ---
-            loadComponent('components/navbar.html', 'navbar-placeholder').then(() => {
-                initializeNavbar();
-            });
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initI18n();
+            await loadComponent('components/navbar.html', 'navbar-placeholder');
+            initializeNavbar();
             loadComponent('components/footer.html', 'footer-placeholder');
+            translatePage();
 
-            // --- ACCORDION LOGIC ---
             const accordion = document.getElementById('learning-accordion');
             if (accordion) {
                 const headers = accordion.querySelectorAll('.accordion-header');

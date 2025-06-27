@@ -17,29 +17,25 @@
     <div id="navbar-placeholder"></div>
 
     <main class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 text-white">
-        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-8">About This Project</h2>
+        <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-8" data-i18n-key="about_title"></h2>
 
         <div class="space-y-8">
             
             <div class="message-box rounded-lg p-6 transition-transform transform hover:scale-105">
                 <div class="flex items-center mb-4">
                     <i class="fa-solid fa-cloud-bolt text-3xl text-yellow-300 mr-4"></i>
-                    <h3 class="font-cinzel text-2xl font-bold text-yellow-300">Our Mission</h3>
+                    <h3 class="font-cinzel text-2xl font-bold text-yellow-300" data-i18n-key="about_mission_title"></h3>
                 </div>
-                <p class="opacity-90">
-                    This game was created as an educational tool to pull back the curtain on how slot machines work. By simulating a slot experience and openly revealing how odds can be manipulated, we hope to empower players with knowledge, highlight the risks of gambling, and promote safer gaming habits.
-                </p>
+                <p class="opacity-90" data-i18n-key="about_mission_text"></p>
             </div>
 
             <div class="message-box rounded-lg p-6 transition-transform transform hover:scale-105">
-                 <h3 class="font-cinzel text-2xl font-bold text-yellow-300 mb-4 text-center">About the Creator</h3>
+                 <h3 class="font-cinzel text-2xl font-bold text-yellow-300 mb-4 text-center" data-i18n-key="about_creator_title"></h3>
                 <div class="flex flex-col md:flex-row items-center text-center md:text-left">
                     <div class="md:ml-6">
                         <p class="text-xl font-bold">M. Zainur Rifai</p>
                         <p class="text-sm text-yellow-200 opacity-80 mb-2">zainurrifaim@thursinaiibs.sch.id</p>
-                        <p class="opacity-90 mt-2">
-                           With a passion for leveraging technology for education, Zainur developed this game to make learning about gambling risks interactive and impactful. This project reflects a commitment to creating tools that foster awareness and critical thinking.
-                        </p>
+                        <p class="opacity-90 mt-2" data-i18n-key="about_creator_text"></p>
                     </div>
                 </div>
             </div>
@@ -47,32 +43,30 @@
             <div class="message-box rounded-lg p-6 transition-transform transform hover:scale-105">
                 <div class="flex items-center mb-4">
                      <i class="fa-solid fa-hand-holding-medical text-3xl text-yellow-300 mr-4"></i>
-                    <h3 class="font-cinzel text-2xl font-bold text-yellow-300">Get Help</h3>
+                    <h3 class="font-cinzel text-2xl font-bold text-yellow-300" data-i18n-key="about_help_title"></h3>
                 </div>
-                <p class="opacity-90">
-                    Gambling can be addictive. If you or someone you know is struggling, please don't hesitate to seek help. There are many free and confidential resources available to provide support.
-                </p>
-                 <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-300 hover:underline mt-4 inline-block font-bold">
-                    National Council on Problem Gambling →
-                </a>
+                <p class="opacity-90" data-i18n-key="about_help_text"></p>
+                 <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-300 hover:underline mt-4 inline-block font-bold" data-i18n-key="about_help_link"></a>
             </div>
         </div>
 
         <div class="text-center mt-10">
-            <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg">Back to Game</a>
+            <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg" data-i18n-key="back_to_game_button"></a>
         </div>
     </main>
 
     <div id="footer-placeholder"></div>
+
      <script type="module">
         import { loadComponent, initializeNavbar } from './js/utility.js';
+        import { initI18n, translatePage } from './js/i18n.js';
         
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- COMPONENT LOADING ---
-            loadComponent('components/navbar.html', 'navbar-placeholder').then(() => {
-                initializeNavbar();
-            });
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initI18n();
+            await loadComponent('components/navbar.html', 'navbar-placeholder');
+            initializeNavbar();
             loadComponent('components/footer.html', 'footer-placeholder');
+            translatePage();
         });
     </script>
 </body>

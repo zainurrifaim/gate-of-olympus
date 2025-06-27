@@ -3,6 +3,7 @@
  * * Contains shared functions used across the entire site,
  * such as dynamic component loading, navbar initialization, and sound playback.
  */
+import { setLanguage } from './i18n.js';
 
 // --- SOUND FUNCTIONS ---
 
@@ -59,13 +60,14 @@ export async function loadComponent(url, placeholderId) {
 
 // --- NAVBAR INITIALIZATION ---
 /**
- * Attaches event listeners for the mobile navbar.
+ * Attaches event listeners for the mobile navbar and language switcher.
  */
 export function initializeNavbar() {
     const hamburgerButton = document.getElementById('hamburger-button');
     const menu = document.getElementById('menu');
     const body = document.body;
 
+    // Mobile menu logic
     if (hamburgerButton && menu) {
         hamburgerButton.addEventListener('click', () => {
             playSound('sound-click'); // Play click sound
@@ -82,6 +84,21 @@ export function initializeNavbar() {
                 menu.classList.add('hidden');
                 body.classList.remove('menu-is-open');
             }
+        });
+    }
+
+    // Language switcher logic
+    const langEnButton = document.getElementById('lang-en');
+    const langIdButton = document.getElementById('lang-id');
+
+    if (langEnButton && langIdButton) {
+        langEnButton.addEventListener('click', () => {
+            playSound('sound-click');
+            setLanguage('en');
+        });
+        langIdButton.addEventListener('click', () => {
+            playSound('sound-click');
+            setLanguage('id');
         });
     }
 }

@@ -1,0 +1,117 @@
+{
+  "lang": "id",
+  "nav_game": "Permainan",
+  "nav_learning": "Belajar",
+  "nav_quiz": "Kuis",
+  "nav_about": "Tentang",
+  "header_title": "Gerbang Olympus",
+  "header_subtitle": "Pengalaman Slot Edukasi",
+  "entry_button": "Masuk ke Gerbang",
+  "spin_button_text": "PUTAR",
+  "spin_button_cost": "BIAYA PUTARAN",
+  "insufficient_credits": "KREDIT ANDA TIDAK CUKUP",
+  "cash_out_button": "CAIRKAN",
+  "credits_label": "Kredit",
+  "spins_label": "Putaran",
+  "wins_label": "Menang",
+  "losses_label": "Kalah",
+  "win_odds_label": "Peluang Menang Saat Ini",
+  "how_it_works_label": "Cara Kerja",
+  "educational_message_default": "Game ini menunjukkan bagaimana mesin slot dirancang untuk memanipulasi pemain. Perhatikan bagaimana peluang dan perasaan Anda berubah saat bermain.",
+  "payouts_label": "Pembayaran Simbol",
+  "house_earnings_label": "Pendapatan Bandar",
+  "footer_warning_title": "Peringatan Judi",
+  "footer_warning_text": "Judi sungguhan dapat menyebabkan kecanduan dan kerugian finansial yang serius. Jika Anda atau seseorang yang Anda kenal memiliki masalah perjudian, segera cari bantuan. Hubungi dewan nasional untuk masalah perjudian atau kelompok dukungan setempat.",
+  "win_message_generic": "SELAMAT, ANDA MENANG!",
+  "win_message_loss": "MENANG: {prize} (TAPI ANDA KEHILANGAN KREDIT)",
+  "lose_message": "NYARIS MENANG!",
+  "loss_disguised_as_win": "Kekalahan yang Disamarkan sebagai Kemenangan",
+  "phase1_explanation": "Fase 1: Pancingan. Peluang dibuat sangat tinggi untuk membuat Anda merasa menang itu mudah.",
+  "phase2_explanation": "Fase 2: Transisi. Peluang telah turun secara signifikan.",
+  "phase3_explanation": "Fase 3: Keuntungan Bandar. Peluang rendah, mencerminkan cara kerja slot sungguhan.",
+  "phase2_modal_title": "Fase 2: Peluang Berubah",
+  "phase2_modal_body": "Probabilitas menang turun dari 90% menjadi 50%. Ini sering dilakukan di game sungguhan untuk membuat Anda merasa harus mengejar ‘keberuntungan’ Anda.",
+  "phase3_modal_title": "Fase 3: Keuntungan Bandar",
+  "phase3_modal_body": "Peluang menang telah anjlok menjadi 20%. Ini adalah fase realistis di mana bandar memiliki keunggulan matematis yang besar.",
+  "cashout_modal_title": "Hasil Sesi",
+  "cashout_summary": "Anda mulai dengan {start} kredit dan berakhir dengan {end}. Secara keseluruhan, Anda {result} kredit.",
+  "cashout_profit": "mendapatkan keuntungan sebesar {change}",
+  "cashout_loss": "mengalami kerugian sebesar {change}",
+  "cashout_chart_explainer": "Grafik ini menunjukkan saldo kredit Anda setelah setiap putaran. Perhatikan bahwa meski sesekali menang, tren keseluruhan bisa saja menurun.",
+  "play_again_button": "Main Lagi",
+  "reality_check_title": "Pengecekan Realitas",
+  "reality_check_body": "Anda telah bermain selama {minutes} menit. Anda telah {result} kredit.",
+  "reality_check_continue_button": "Lanjutkan Bermain",
+  "dynamic_chasing_losses": "Merasa terdorong untuk memenangkan kembali uang yang hilang? Ini disebut ‘mengejar kerugian’, dan ini adalah jebakan yang sangat umum.",
+  "dynamic_winning_streak": "Anda sedang dalam rentetan kemenangan! Sangat mudah untuk merasa tak terkalahkan, tetapi ingatlah setiap putaran adalah acak.",
+  "quiz_title": "Kuis Pengetahuan",
+  "quiz_choose_category": "Pilih Kategori",
+  "quiz_question_progress": "Pertanyaan {current} dari {total}",
+  "quiz_complete": "Kuis Selesai!",
+  "quiz_results_title": "Hasil Kuis",
+  "quiz_results_summary": "Anda menjawab benar {score} dari {total} pertanyaan.",
+  "quiz_results_encouragement": "Pengetahuan adalah pertahanan terbaik Anda. Semakin Anda memahami matematika dan psikologi di balik permainan ini, semakin Anda bisa bermain dengan aman.",
+  "quiz_try_another": "Coba Kuis Lain",
+  "correct_answer_text": "Benar!",
+  "incorrect_answer_text": "Kurang Tepat.",
+  "next_question_button": "Pertanyaan Berikutnya →",
+  "show_results_button": "Tampilkan Hasil",
+  "quiz_categories": {
+    "myth": "Mitos & Tanda-Tanda Perjudian",
+    "math": "Matematika Slot",
+    "psychology": "Trik Psikologis"
+  },
+  "quiz_data_myth": [
+    {
+      "question": "Jika mesin slot sudah lama tidak membayar, maka mesin itu 'sebentar lagi' akan menang.",
+      "options": [
+        "Benar",
+        "Salah"
+      ],
+      "correctAnswer": "Salah",
+      "explanation": "Setiap putaran bersifat acak dan independen, ditentukan oleh RNG. Hasil masa lalu tidak berdampak pada hasil di masa depan."
+    }
+  ],
+  "quiz_data_math": [
+    {
+      "question": "Apa jaminan dari RTP (Return to Player) sebesar 96%?",
+      "options": [
+        "Anda akan menang 96% dari waktu",
+        "Untuk setiap $100 yang dipertaruhkan, Anda mendapatkan kembali tepat $96",
+        "Mesin membayar kembali 96% dari semua uang yang dipertaruhkan selama jutaan putaran",
+        "Kasino hanya mendapat untung 4% dari Anda"
+      ],
+      "correctAnswer": "Mesin membayar kembali 96% dari semua uang yang dipertaruhkan selama jutaan putaran",
+      "explanation": "RTP adalah rata-rata statistik jangka panjang, bukan jaminan untuk satu sesi. Hasil jangka pendek Anda bisa sangat bervariasi."
+    }
+  ],
+  "quiz_data_psychology": [
+    {
+      "question": "Apa itu 'kerugian yang disamarkan sebagai kemenangan'?",
+      "options": [
+        "Memenangkan jackpot",
+        "Memenangkan kembali persis jumlah taruhan Anda",
+        "Pembayaran yang kurang dari taruhan awal Anda",
+        "Hampir kena di gulungan"
+      ],
+      "correctAnswer": "Pembayaran yang kurang dari taruhan awal Anda",
+      "explanation": "Slot menggunakan efek perayaan bahkan untuk kemenangan yang lebih kecil dari taruhan Anda, menipu otak Anda sehingga merasa seperti menang padahal sebenarnya Anda sedang kehilangan uang."
+    }
+  ],
+  "learning_center_title": "Pusat Pembelajaran",
+  "back_to_game_button": "Kembali ke Permainan",
+  "learning_rng_title": "⚡ Apa itu Random Number Generator (RNG)?",
+  "learning_rng_text": "Setiap mesin slot modern menggunakan RNG. Ini adalah algoritma komputer yang menghasilkan ribuan angka acak per detik. Saat Anda menekan \"putar\", mesin menggunakan angka terbaru untuk menentukan hasilnya. Ini berarti setiap putaran sepenuhnya independen dan tidak dapat diprediksi. Tidak ada yang namanya mesin ‘panas’ atau ‘dingin’.",
+  "learning_edge_title": "🏛️ Penjelasan Keuntungan Bandar",
+  "learning_edge_text": "\"Keuntungan bandar\" adalah keuntungan matematis yang dimiliki kasino pada setiap taruhan. Untuk mesin slot, ini diwakili oleh persentase Return to Player (RTP). RTP 95% berarti bahwa, selama jutaan putaran, mesin diprogram untuk membayar kembali 95% dari semua uang yang dipertaruhkan. Sisa 5% adalah keuntungan kasino. Dalam jangka panjang, bandar selalu menang.",
+  "learning_psychology_title": "💎 Psikologi Perjudian",
+  "learning_psychology_text": "Perjudian dirancang agar menarik secara psikologis. Lampu berkedip, suara yang menarik, dan \"hampir kena\" semuanya memicu pelepasan dopamin di otak Anda, membuat Anda ingin bermain lebih banyak. \"Kerugian yang disamarkan sebagai kemenangan\" (di mana Anda memenangkan kembali kurang dari taruhan Anda) juga dapat menipu Anda sehingga merasa seperti menang, padahal sebenarnya Anda sedang kehilangan uang.",
+  "about_title": "Tentang Proyek Ini",
+  "about_mission_title": "Misi Kami",
+  "about_mission_text": "Game ini dibuat sebagai alat pendidikan untuk membuka tirai tentang cara kerja mesin slot. Dengan mensimulasikan pengalaman slot dan secara terbuka mengungkapkan bagaimana peluang dapat dimanipulasi, kami berharap dapat memberdayakan pemain dengan pengetahuan, menyoroti risiko perjudian, dan mempromosikan kebiasaan bermain yang lebih aman.",
+  "about_creator_title": "Tentang Pembuat",
+  "about_creator_text": "Berbekal semangat memanfaatkan teknologi untuk pendidikan, Zainur mengembangkan game ini agar pembelajaran tentang risiko perjudian menjadi interaktif dan berdampak. Proyek ini mencerminkan komitmen untuk menciptakan alat yang menumbuhkan kesadaran dan pemikiran kritis.",
+  "about_help_title": "Dapatkan Bantuan",
+  "about_help_text": "Perjudian dapat membuat ketagihan. Jika Anda atau seseorang yang Anda kenal sedang kesulitan, jangan ragu untuk mencari bantuan. Ada banyak sumber daya gratis dan rahasia yang tersedia untuk memberikan dukungan.",
+  "about_help_link": "Dewan Nasional untuk Masalah Perjudian →"
+}
