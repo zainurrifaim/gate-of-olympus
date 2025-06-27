@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="media/images/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
 
@@ -18,33 +19,46 @@
     <main class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 text-white">
         <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-yellow-300 tracking-wider text-center mb-8">About This Project</h2>
 
-        <div class="space-y-6 text-center">
+        <div class="space-y-8">
             
-            <div class="message-box rounded-lg p-6">
-                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Our Mission</h3>
+            <div class="message-box rounded-lg p-6 transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                    <i class="fa-solid fa-cloud-bolt text-3xl text-yellow-300 mr-4"></i>
+                    <h3 class="font-cinzel text-2xl font-bold text-yellow-300">Our Mission</h3>
+                </div>
                 <p class="opacity-90">
-                    This project was created as an educational tool to raise awareness about the mechanics of slot machines and the risks associated with gambling. By simulating a slot experience and revealing how odds can be manipulated, we hope to empower players with knowledge and promote responsible gaming habits.
+                    This game was created as an educational tool to pull back the curtain on how slot machines work. By simulating a slot experience and openly revealing how odds can be manipulated, we hope to empower players with knowledge, highlight the risks of gambling, and promote safer gaming habits.
                 </p>
             </div>
 
-            <div class="message-box rounded-lg p-6">
-                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-3">Developer Profile</h3>
-                <div class="flex flex-col items-center">
-                    <p class="text-lg font-bold">M. Zainur Rifai</p>
-                    <p class="text-sm text-yellow-200 opacity-80">zainurrifaim@thursinaiibs.sch.id</p>
+            <div class="message-box rounded-lg p-6 transition-transform transform hover:scale-105">
+                 <h3 class="font-cinzel text-2xl font-bold text-yellow-300 mb-4 text-center">About the Creator</h3>
+                <div class="flex flex-col md:flex-row items-center text-center md:text-left">
+                    <div class="md:ml-6">
+                        <p class="text-xl font-bold">M. Zainur Rifai</p>
+                        <p class="text-sm text-yellow-200 opacity-80 mb-2">zainurrifaim@thursinaiibs.sch.id</p>
+                        <p class="opacity-90 mt-2">
+                           With a passion for leveraging technology for education, Zainur developed this game to make learning about gambling risks interactive and impactful. This project reflects a commitment to creating tools that foster awareness and critical thinking.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="message-box rounded-lg p-6">
-                <h3 class="font-cinzel text-xl font-bold text-yellow-300 mb-2">Get Help</h3>
+            <div class="message-box rounded-lg p-6 transition-transform transform hover:scale-105">
+                <div class="flex items-center mb-4">
+                     <i class="fa-solid fa-hand-holding-medical text-3xl text-yellow-300 mr-4"></i>
+                    <h3 class="font-cinzel text-2xl font-bold text-yellow-300">Get Help</h3>
+                </div>
                 <p class="opacity-90">
-                    Gambling can be addictive. If you or someone you know is struggling, please don't hesitate to seek help. There are many free and confidential resources available.
+                    Gambling can be addictive. If you or someone you know is struggling, please don't hesitate to seek help. There are many free and confidential resources available to provide support.
                 </p>
-                 <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-300 hover:underline mt-3 inline-block font-bold">National Council on Problem Gambling →</a>
+                 <a href="https://www.ncpgambling.org/" target="_blank" rel="noopener noreferrer" class="text-yellow-300 hover:underline mt-4 inline-block font-bold">
+                    National Council on Problem Gambling →
+                </a>
             </div>
         </div>
 
-        <div class="text-center mt-8">
+        <div class="text-center mt-10">
             <a href="index.html" class="spin-button inline-block px-8 py-3 text-xl font-bold rounded-lg">Back to Game</a>
         </div>
     </main>
