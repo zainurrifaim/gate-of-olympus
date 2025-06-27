@@ -83,14 +83,12 @@ function initializeGame() {
         
         playSound('sound-win');
         state.wins++;
-        const winningSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
         
         // --- REVISED PRIZE FORMULA ---
         // Prizes now range from 50 to 100
         const prize = 50 + Math.floor(Math.random() * 6) * 10; 
         
         state.credits += prize;
-        elements.slots.forEach(slot => slot.textContent = winningSymbol);
         
         // Check for a "loss disguised as a win"
         if (prize <= COST_PER_SPIN) {
@@ -111,12 +109,6 @@ function initializeGame() {
     const handleLoss = () => {
         playSound('sound-lose');
         state.losses++;
-        elements.slots[0].textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-        elements.slots[1].textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-        do {
-            elements.slots[2].textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-        } while (elements.slots[0].textContent === elements.slots[1].textContent && elements.slots[1].textContent === elements.slots[2].textContent);
-        
         elements.winLoseMessage.textContent = 'TRY AGAIN';
         elements.winLoseMessage.classList.remove('win-message', 'text-green-400', 'text-orange-400'); // Clear all colors
         elements.winLoseMessage.classList.add('text-red-500');
@@ -125,52 +117,81 @@ function initializeGame() {
     const handleSpin = () => {
         if (state.isSpinning || state.credits < COST_PER_SPIN) return;
 
-        // 1. Setup the spin
-        playSound('sound-click');
-        playSound('sound-spin');
+        // 1. Setup for spin
         state.isSpinning = true;
         state.spinCount++;
         state.credits -= COST_PER_SPIN;
+        playSound('sound-spin');
         
-        // 2. Update UI for spinning state
         elements.winLoseMessage.textContent = '';
         elements.winLoseMessage.classList.remove('text-green-400', 'text-red-500', 'text-orange-400');
         ui.updateStatsDisplays(elements, state);
         ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
         ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
 
-        // 3. Start the visual spinning
-        let spinInterval = setInterval(() => {
+        // 2. Start all slots spinning visually
+        elements.slots.forEach(slot => {
+            slot.classList.add('spinning');
+        });
+        const spinInterval = setInterval(() => {
             elements.slots.forEach(slot => {
-                slot.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-                slot.classList.add('spinning');
+                if (slot.classList.contains('spinning')) {
+                    slot.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                }
             });
         }, 100);
 
-        // 4. Determine and display the outcome
+        // 3. After a delay, begin the sequential reveal process
         setTimeout(() => {
-            clearInterval(spinInterval);
-            stopSound('sound-spin');
-            elements.slots.forEach(slot => slot.classList.remove('spinning'));
-
             const didWin = Math.random() < getCurrentWinOdds();
+            let finalSymbols = [];
 
             if (didWin) {
-                handleWin();
+                const winningSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                finalSymbols = [winningSymbol, winningSymbol, winningSymbol];
             } else {
-                handleLoss();
+                // Generate three unique symbols for a clear loss
+                let symbolsCopy = [...SYMBOLS];
+                let s1 = symbolsCopy.splice(Math.floor(Math.random() * symbolsCopy.length), 1)[0];
+                let s2 = symbolsCopy.splice(Math.floor(Math.random() * symbolsCopy.length), 1)[0];
+                let s3 = symbolsCopy.splice(Math.floor(Math.random() * symbolsCopy.length), 1)[0];
+                finalSymbols = [s1, s2, s3];
             }
-            
-            // 5. Cleanup and reset for next spin
-            setTimeout(() => {
-                elements.winLoseMessage.classList.remove('win-message');
-            }, 1000);
 
-            state.isSpinning = false;
-            state.creditHistory.push(state.credits); // Record credits after spin resolves
-            ui.updateStatsDisplays(elements, state);
-            ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
-        }, 1500);
+            // 4. Reveal slots one by one
+            const revealDelay = 500; // Time in ms between each slot stop
+            elements.slots.forEach((slot, index) => {
+                setTimeout(() => {
+                    slot.classList.remove('spinning');
+                    slot.textContent = finalSymbols[index];
+                    playSound('sound-click');
+
+                    // If this is the last slot
+                    if (index === elements.slots.length - 1) {
+                        clearInterval(spinInterval);
+                        stopSound('sound-spin');
+                        
+                        // Trigger win or loss logic
+                        if (didWin) {
+                            handleWin();
+                        } else {
+                            handleLoss();
+                        }
+                        
+                        // Final state updates
+                        state.isSpinning = false;
+                        state.creditHistory.push(state.credits);
+                        ui.updateStatsDisplays(elements, state);
+                        ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
+                        
+                        setTimeout(() => {
+                            elements.winLoseMessage.classList.remove('win-message');
+                        }, 1000);
+                    }
+                }, index * revealDelay);
+            });
+
+        }, 2000); // Wait 2 seconds before starting the reveal. Total spin time is now ~3 seconds.
     };
 
     const handleCashOut = () => {
@@ -195,20 +216,20 @@ function initializeGame() {
     // --- EVENT LISTENERS ---
     elements.spinButton.addEventListener('click', handleSpin);
     elements.cashoutButton.addEventListener('click', handleCashOut);
+
     elements.modalCloseButton.addEventListener('click', () => {
         playSound('sound-click');
         ui.hideModal(elements);
     });
 
-    // REVISED: Event listener for the new "Play Again" button
     elements.playAgainButton.addEventListener('click', () => {
         playSound('sound-click');
-        // The simplest and most effective way to reset the game to its initial state
         location.reload();
     });
 
     // --- INITIAL RENDER ---
     ui.updateStatsDisplays(elements, state);
     ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
+    // CORRECTED THIS LINE
     ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
 }
