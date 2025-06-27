@@ -63,7 +63,8 @@
             await initI18n();
             await loadComponent('components/navbar.html', 'navbar-placeholder');
             initializeNavbar();
-            loadComponent('components/footer.html', 'footer-placeholder');
+            // ADDED await here
+            await loadComponent('components/footer.html', 'footer-placeholder');
             translatePage();
 
             const accordion = document.getElementById('learning-accordion');
