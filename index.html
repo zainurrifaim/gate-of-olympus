@@ -16,9 +16,17 @@
 
 <body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
 
+    <div id="entry-overlay">
+        <button id="entry-button" class="spin-button text-2xl font-bold rounded-lg px-10 py-5">Enter the Gates</button>
+    </div>
+
+    <div id="intro-overlay" class="hidden">
+        <div id="intro-lightning"></div>
+    </div>
+
     <div id="navbar-placeholder"></div>
 
-    <div id="game-root" class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8">
+    <div id="game-root" class="game-container w-full max-w-4xl mx-auto rounded-2xl p-4 md:p-8 initially-hidden">
 
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -90,6 +98,7 @@
     <audio id="sound-spin" src="media/audio/spin.mp3" preload="auto" loop></audio>
     <audio id="sound-win" src="media/audio/win.mp3" preload="auto"></audio>
     <audio id="sound-lose" src="media/audio/lose.mp3" preload="auto"></audio>
+    <audio id="sound-lightning" src="media/audio/lightning.mp3" preload="auto"></audio>
     
     <script src="js/ui.js" type="module"></script>
     <script src="js/main.js" type="module"></script>

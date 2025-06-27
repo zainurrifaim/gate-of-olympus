@@ -7,6 +7,36 @@ import { loadComponent, initializeNavbar, playSound, stopSound } from './utility
 
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- ELEMENT GRABBING ---
+    const entryOverlay = document.getElementById('entry-overlay');
+    const entryButton = document.getElementById('entry-button');
+    const introOverlay = document.getElementById('intro-overlay');
+    const gameRoot = document.getElementById('game-root');
+
+    // --- ENTRY SEQUENCE ---
+    entryButton.addEventListener('click', () => {
+        // 1. Fade out the entry button overlay
+        entryOverlay.classList.add('hidden');
+
+        // 2. Start the lightning animation and sound
+        introOverlay.classList.remove('hidden');
+        playSound('sound-lightning');
+
+        // 3. After the intro animation finishes (e.g., 2.5 seconds)
+        setTimeout(() => {
+            // Fade out the intro overlay
+            introOverlay.classList.add('hidden');
+            
+            // Fade in the main game content
+            gameRoot.classList.remove('initially-hidden');
+            gameRoot.classList.add('fade-in');
+
+        }, 2500);
+    }, { once: true }); // Ensure the click event only fires once
+
+
+    // --- COMPONENT AND GAME LOADING ---
     // Load components first, then initialize the game
     loadComponent('components/navbar.html', 'navbar-placeholder').then(() => {
         initializeNavbar();

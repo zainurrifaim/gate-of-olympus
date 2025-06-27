@@ -21,6 +21,73 @@ body.menu-is-open {
     font-family: 'Cinzel', serif;
 }
 
+/* --- Entry & Intro Animation Styles --- */
+#entry-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10001; /* Highest z-index */
+    background-color: rgba(11, 15, 34, 0.8); /* Semi-transparent background */
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    background-color: transparent; /* Make background transparent to see body background */
+    opacity: 1;
+    transition: opacity 1s ease-in-out 1.5s; /* Fade out after 1.5s delay */
+}
+
+#intro-overlay.hidden, #entry-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#intro-lightning {
+    width: 100%;
+    height: 100%;
+    background-image: url('../media/images/lightning.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0;
+    animation: intro-lightning-strike 1.5s ease-out forwards;
+}
+
+@keyframes intro-lightning-strike {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    40% { opacity: 0.2; }
+    60% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+/* --- General Animation Styles --- */
+.initially-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    /* ADJUSTED: Increased duration from 0.5s to 1.2s for a smoother effect */
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 /* Main Container Styles */
 .game-container {
     background-color: rgba(10, 10, 25, 0.8);
