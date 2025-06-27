@@ -8,42 +8,28 @@ import { loadComponent, initializeNavbar, playSound, stopSound } from './utility
 // --- INITIALIZATION ---
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- ELEMENT GRABBING ---
     const entryOverlay = document.getElementById('entry-overlay');
     const entryButton = document.getElementById('entry-button');
     const introOverlay = document.getElementById('intro-overlay');
     const gameRoot = document.getElementById('game-root');
 
-    // --- ENTRY SEQUENCE ---
     entryButton.addEventListener('click', () => {
-        // 1. Fade out the entry button overlay
         entryOverlay.classList.add('hidden');
-
-        // 2. Start the lightning animation and sound
         introOverlay.classList.remove('hidden');
         playSound('sound-lightning');
 
-        // 3. After the intro animation finishes (e.g., 2.5 seconds)
         setTimeout(() => {
-            // Fade out the intro overlay
             introOverlay.classList.add('hidden');
-            
-            // Fade in the main game content
             gameRoot.classList.remove('initially-hidden');
             gameRoot.classList.add('fade-in');
-
         }, 2500);
-    }, { once: true }); // Ensure the click event only fires once
+    }, { once: true });
 
 
-    // --- COMPONENT AND GAME LOADING ---
-    // Load components first, then initialize the game
     loadComponent('components/navbar.html', 'navbar-placeholder').then(() => {
         initializeNavbar();
     });
     
-    // Make sure the game initializes after the footer is loaded
-    // to ensure all elements are available for the game logic.
     loadComponent('components/footer.html', 'footer-placeholder').then(() => {
         initializeGame();
     });
@@ -55,6 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeGame() {
     // --- DOM ELEMENTS ---
     const elements = ui.getDOMElements();
+    const reelTracks = [
+        document.getElementById('reel1-track'),
+        document.getElementById('reel2-track'),
+        document.getElementById('reel3-track'),
+    ];
 
     // --- GAME STATE ---
     const state = {
@@ -63,14 +54,38 @@ function initializeGame() {
         wins: 0,
         losses: 0,
         isSpinning: false,
-        creditHistory: [1000], // Start with the initial credits
+        creditHistory: [1000],
     };
 
     // --- GAME CONSTANTS ---
     const COST_PER_SPIN = 50;
     const SYMBOLS = ['⚡', '🏛️', '⭐', '💎', '🏆', '🔱'];
+    const REEL_LENGTH = 30; // Number of symbols on each reel track
+    let symbolHeight = 0; // Will be calculated after populating reels
 
     // --- GAME LOGIC ---
+
+    /**
+     * Populates the reel tracks with random symbols.
+     */
+    function populateReels() {
+        reelTracks.forEach(track => {
+            track.innerHTML = ''; // Clear existing symbols
+            for (let i = 0; i < REEL_LENGTH; i++) {
+                const symbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+                const symbolDiv = document.createElement('div');
+                symbolDiv.className = 'reel-symbol';
+                symbolDiv.textContent = symbol;
+                track.appendChild(symbolDiv);
+            }
+        });
+        // Calculate symbol height for positioning
+        const firstSymbol = reelTracks[0].querySelector('.reel-symbol');
+        if (firstSymbol) {
+            symbolHeight = firstSymbol.offsetHeight;
+        }
+    }
+    
     const getCurrentWinOdds = () => {
         if (state.spinCount < 5) return 0.90;
         if (state.spinCount < 10) return 0.50;
@@ -78,19 +93,12 @@ function initializeGame() {
     };
 
     const handleWin = () => {
-        // Trigger the lightning image animation
-        elements.lightningOverlay.classList.add('active');
-        
-        playSound('sound-win');
+        // Sound and lightning are now handled immediately when reel stops
         state.wins++;
         
-        // --- REVISED PRIZE FORMULA ---
-        // Prizes now range from 50 to 100
         const prize = 50 + Math.floor(Math.random() * 6) * 10; 
-        
         state.credits += prize;
         
-        // Check for a "loss disguised as a win"
         if (prize <= COST_PER_SPIN) {
             elements.winLoseMessage.textContent = `WIN: ${prize} (BUT YOU LOST CREDITS)`;
             elements.winLoseMessage.classList.add('win-message', 'text-orange-400');
@@ -98,29 +106,24 @@ function initializeGame() {
             elements.winLoseMessage.textContent = `YOU WON ${prize}!`;
             elements.winLoseMessage.classList.add('win-message', 'text-green-400');
         }
-
-
-        // Remove the lightning class after the animation finishes (duration is 700ms in CSS)
-        setTimeout(() => {
-            elements.lightningOverlay.classList.remove('active');
-        }, 700);
     };
 
     const handleLoss = () => {
-        playSound('sound-lose');
+        // Sound is now handled immediately when reel stops
         state.losses++;
-        elements.winLoseMessage.textContent = 'TRY AGAIN';
-        elements.winLoseMessage.classList.remove('win-message', 'text-green-400', 'text-orange-400'); // Clear all colors
+        elements.winLoseMessage.textContent = 'SO CLOSE!';
+        elements.winLoseMessage.classList.remove('win-message', 'text-green-400', 'text-orange-400');
         elements.winLoseMessage.classList.add('text-red-500');
     };
 
     const handleSpin = () => {
         if (state.isSpinning || state.credits < COST_PER_SPIN) return;
 
-        // 1. Setup for spin
         state.isSpinning = true;
         state.spinCount++;
         state.credits -= COST_PER_SPIN;
+        
+        // --- FIXED SOUND HANDLING - Only play spin sound once ---
         playSound('sound-spin');
         
         elements.winLoseMessage.textContent = '';
@@ -129,56 +132,74 @@ function initializeGame() {
         ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
         ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
 
-        // 2. Start all slots spinning visually
-        elements.slots.forEach(slot => {
-            slot.classList.add('spinning');
+        reelTracks.forEach(track => {
+            track.style.transition = 'none';
+            track.style.transform = `translateY(-${Math.random() * 1000}px)`;
+            track.classList.add('spinning');
         });
-        const spinInterval = setInterval(() => {
-            elements.slots.forEach(slot => {
-                if (slot.classList.contains('spinning')) {
-                    slot.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-                }
+        
+        setTimeout(() => {
+            reelTracks.forEach(track => {
+                track.style.transition = 'transform 1s cubic-bezier(0.25, 0.1, 0.25, 1)';
             });
         }, 100);
 
-        // 3. After a delay, begin the sequential reveal process
-        setTimeout(() => {
-            const didWin = Math.random() < getCurrentWinOdds();
-            let finalSymbols = [];
+        const didWin = Math.random() < getCurrentWinOdds();
+        const stopPositions = [];
+        let targetSymbols = [];
 
-            if (didWin) {
-                const winningSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-                finalSymbols = [winningSymbol, winningSymbol, winningSymbol];
-            } else {
-                // Generate three unique symbols for a clear loss
-                let symbolsCopy = [...SYMBOLS];
-                let s1 = symbolsCopy.splice(Math.floor(Math.random() * symbolsCopy.length), 1)[0];
-                let s2 = symbolsCopy.splice(Math.floor(Math.random() * symbolsCopy.length), 1)[0];
-                let s3 = symbolsCopy.splice(Math.floor(Math.random() * symbolsCopy.length), 1)[0];
-                finalSymbols = [s1, s2, s3];
-            }
+        if (didWin) {
+            const winSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+            targetSymbols = [winSymbol, winSymbol, winSymbol];
+        } else {
+            const nearMissSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+            let finalSymbol;
+            do {
+                finalSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+            } while (finalSymbol === nearMissSymbol);
+            targetSymbols = [nearMissSymbol, nearMissSymbol, finalSymbol];
+        }
 
-            // 4. Reveal slots one by one
-            const revealDelay = 500; // Time in ms between each slot stop
-            elements.slots.forEach((slot, index) => {
-                setTimeout(() => {
-                    slot.classList.remove('spinning');
-                    slot.textContent = finalSymbols[index];
-                    playSound('sound-click');
+        reelTracks.forEach((track, i) => {
+            const symbolsOnTrack = Array.from(track.children).map(s => s.textContent);
+            let targetIndex = symbolsOnTrack.indexOf(targetSymbols[i], 10);
+            if (targetIndex < 2) targetIndex = symbolsOnTrack.lastIndexOf(targetSymbols[i], REEL_LENGTH - 3);
+            const position = -1 * (targetIndex - 1) * symbolHeight;
+            stopPositions.push(position);
+        });
 
-                    // If this is the last slot
-                    if (index === elements.slots.length - 1) {
-                        clearInterval(spinInterval);
-                        stopSound('sound-spin');
-                        
-                        // Trigger win or loss logic
+        const stopDelays = [1500, 2500, 3500];
+        
+        reelTracks.forEach((track, index) => {
+            setTimeout(() => {
+                track.classList.remove('spinning');
+                track.style.transform = `translateY(${stopPositions[index]}px)`;
+                playSound('sound-click');
+
+                if (index === reelTracks.length - 1) {
+                    
+                    // --- FIXED SOUND HANDLING - Stop spin sound when all reels stop ---
+                    stopSound('sound-spin');
+                    
+                    // --- PLAY WIN/LOSE SOUND IMMEDIATELY ---
+                    if (didWin) {
+                        playSound('sound-win');
+                        elements.lightningOverlay.classList.add('active');
+                        setTimeout(() => {
+                            elements.lightningOverlay.classList.remove('active');
+                        }, 700);
+                    } else {
+                        playSound('sound-lose');
+                    }
+                    
+                    const animationDuration = 1000;
+                    setTimeout(() => {
                         if (didWin) {
                             handleWin();
                         } else {
                             handleLoss();
                         }
                         
-                        // Final state updates
                         state.isSpinning = false;
                         state.creditHistory.push(state.credits);
                         ui.updateStatsDisplays(elements, state);
@@ -186,12 +207,11 @@ function initializeGame() {
                         
                         setTimeout(() => {
                             elements.winLoseMessage.classList.remove('win-message');
-                        }, 1000);
-                    }
-                }, index * revealDelay);
-            });
-
-        }, 2000); // Wait 2 seconds before starting the reveal. Total spin time is now ~3 seconds.
+                        }, 1500);
+                    }, animationDuration);
+                }
+            }, stopDelays[index]);
+        });
     };
 
     const handleCashOut = () => {
@@ -205,31 +225,27 @@ function initializeGame() {
 
         elements.cashoutSummary.innerHTML = `You started with <strong>${startingCredits}</strong> credits and ended with <strong>${finalCredits}</strong>. Overall, you ${resultText} credits.`;
 
-        // Disable game buttons
         elements.spinButton.disabled = true;
         elements.cashoutButton.disabled = true;
         
-        // Render the chart
         ui.renderCreditsChart(elements, state.creditHistory);
     };
 
     // --- EVENT LISTENERS ---
     elements.spinButton.addEventListener('click', handleSpin);
     elements.cashoutButton.addEventListener('click', handleCashOut);
-
     elements.modalCloseButton.addEventListener('click', () => {
         playSound('sound-click');
         ui.hideModal(elements);
     });
-
     elements.playAgainButton.addEventListener('click', () => {
         playSound('sound-click');
         location.reload();
     });
 
     // --- INITIAL RENDER ---
+    populateReels();
     ui.updateStatsDisplays(elements, state);
     ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
-    // CORRECTED THIS LINE
     ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
 }

@@ -19,7 +19,7 @@
 <body class="min-h-screen w-full flex flex-col items-center justify-center p-4">
 
     <div id="entry-overlay">
-        <button id="entry-button" class="spin-button text-2xl font-bold rounded-lg px-10 py-5">Enter the Gate of Olympus</button>
+        <button id="entry-button" class="spin-button text-2xl font-bold rounded-lg px-10 py-5">Enter the Gates</button>
     </div>
 
     <div id="intro-overlay" class="hidden">
@@ -34,9 +34,15 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <main class="lg:col-span-2">
                 <div class="slot-grid mb-6">
-                    <div id="slot1" class="slot">⚡</div>
-                    <div id="slot2" class="slot">💎</div>
-                    <div id="slot3" class="slot">🏛️</div>
+                    <div class="reel-container">
+                        <div class="reel-track" id="reel1-track"></div>
+                    </div>
+                    <div class="reel-container">
+                        <div class="reel-track" id="reel2-track"></div>
+                    </div>
+                    <div class="reel-container">
+                        <div class="reel-track" id="reel3-track"></div>
+                    </div>
                 </div>
 
                 <div id="win-lose-message" class="text-center h-8 text-3xl font-cinzel font-bold mb-4"></div>
@@ -80,7 +86,7 @@
                     </p>
                 </div>
 
-                <div class="message-box rounded-lg p-4 text-center">
+                <div class="message-box rounded-lg p-4">
                     <h3 class="font-cinzel text-lg font-bold text-yellow-300 mb-2">How It Works</h3>
                     <p id="educational-message" class="text-sm opacity-90">
                         This game demonstrates how slot machines can be designed to manipulate players. Pay attention to how the odds and your feelings change as you play.
@@ -116,7 +122,7 @@
     
 
     <audio id="sound-click" src="media/audio/click.mp3" preload="auto"></audio>
-    <audio id="sound-spin" src="media/audio/spin.mp3" preload="auto" loop></audio>
+    <audio id="sound-spin" src="media/audio/spin.mp3" preload="auto"></audio>
     <audio id="sound-win" src="media/audio/win.mp3" preload="auto"></audio>
     <audio id="sound-lose" src="media/audio/lose.mp3" preload="auto"></audio>
     <audio id="sound-lightning" src="media/audio/lightning.mp3" preload="auto"></audio>

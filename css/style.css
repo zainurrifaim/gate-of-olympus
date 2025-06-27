@@ -105,38 +105,83 @@ body.menu-is-open {
     padding: 1rem;
     border-radius: 0.75rem;
     border: 2px solid #7b6800;
+    position: relative; /* Needed for the payline indicator */
 }
 
-.slot {
+/* NEW: Payline Indicator */
+.slot-grid::before, .slot-grid::after {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background-color: #ffd700;
+    opacity: 0.5;
+    z-index: 10;
+    pointer-events: none;
+}
+.slot-grid::before {
+    /* Positioned 1/3 down the container height */
+    top: 33.33%;
+}
+.slot-grid::after {
+    /* Positioned 2/3 down the container height */
+    bottom: 33.33%;
+}
+
+
+/* NEW Reel Styles */
+.reel-container {
+    background-color: #1c1948;
+    border: 1px solid #a48b00;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 0.5rem;
+    height: calc( (3.5rem * 1.2) * 3 ); /* Height of 3 symbols */
+    overflow: hidden;
+    position: relative;
+}
+
+.reel-track {
+    display: flex;
+    flex-direction: column;
+    /* This transition creates the smooth stop effect */
+    transition: transform 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reel-track.spinning {
+    /* A quick up-and-down motion for the blur effect */
+    animation: blur-spin 0.05s linear infinite;
+}
+
+@keyframes blur-spin {
+    from { transform: translateY(5%); }
+    to { transform: translateY(-5%); }
+}
+
+.reel-symbol {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    /* REVISED: Explicit height to ensure 3 rows are visible */
+    height: calc(3.5rem * 1.2);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3.5rem; /* Responsive font size */
-    background-color: #e3d9ff;
-    color: #1c1948;
-    border-radius: 0.5rem;
-    border: 1px solid #a48b00;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-    transition: transform 0.1s ease;
+    color: #e3d9ff;
+    line-height: 1.2;
+    flex-shrink: 0;
 }
 
+
 @media (min-width: 640px) {
-    .slot {
+    .reel-container {
+         height: calc( (5rem * 1.2) * 3 );
+    }
+    .reel-symbol {
+        height: calc(5rem * 1.2);
         font-size: 5rem;
     }
 }
 
-.slot.spinning {
-    animation: spin-anim 0.1s linear infinite;
-}
-
-@keyframes spin-anim {
-    0% { transform: translateY(-5px) scale(0.98); }
-    50% { transform: translateY(5px) scale(1); }
-    100% { transform: translateY(-5px) scale(0.98); }
-}
 
 /* Button Styles */
 .spin-button {
