@@ -92,6 +92,17 @@
                         This game demonstrates how slot machines can be designed to manipulate players. Pay attention to how the odds and your feelings change as you play.
                     </p>
                 </div>
+                
+                <div class="payouts-box rounded-lg p-4">
+                    <h3 class="font-cinzel text-lg font-bold text-yellow-300 mb-2 text-center">Symbol Payouts</h3>
+                    <div id="payouts-info" class="text-sm opacity-90">
+                        </div>
+                </div>
+
+                <div id="house-edge-display" class="stat-box rounded-lg p-4 text-center">
+                    <h3 class="font-cinzel text-lg font-bold text-red-300 mb-2">House Earnings</h3>
+                    <p id="house-earnings" class="text-2xl font-bold">0</p>
+                </div>
             </aside>
         </div>
     </div>
@@ -115,6 +126,14 @@
             </div>
             <p class="text-sm opacity-80 mb-6">This chart shows your credit balance after each spin. Notice how even with wins, the overall trend can be downward.</p>
             <button id="play-again-button" class="spin-button px-8 py-3 text-xl font-bold rounded-lg">Play Again</button>
+        </div>
+    </div>
+
+    <div id="reality-check-modal" class="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content border-2 border-blue-400 rounded-2xl p-6 md:p-8 max-w-md w-full text-center shadow-2xl">
+            <h2 class="font-cinzel text-2xl md:text-3xl text-blue-300 mb-4">Reality Check</h2>
+            <p id="reality-check-body" class="text-base md:text-lg text-gray-200 mb-6"></p>
+            <button id="reality-check-close-button" class="cashout-button px-8 py-3 text-xl font-bold rounded-lg">Continue Playing</button>
         </div>
     </div>
 

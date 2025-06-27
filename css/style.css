@@ -254,6 +254,17 @@ body.menu-is-open {
     transition: background-color 0.5s ease-in-out;
 }
 
+/* Payouts Info Styles */
+#payouts-info div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+}
+
+#payouts-info span:first-child {
+    font-size: 1.5rem; /* Larger emoji */
+}
+
 /* Animation and Messaging Styles */
 .win-message {
     animation: win-pulse 1s ease-out;

@@ -55,13 +55,24 @@ function initializeGame() {
         losses: 0,
         isSpinning: false,
         creditHistory: [1000],
+        houseEarnings: 0,
+        startTime: new Date(),
     };
 
     // --- GAME CONSTANTS ---
     const COST_PER_SPIN = 50;
     const SYMBOLS = ['⚡', '🏛️', '⭐', '💎', '🏆', '🔱'];
+    const PAYOUTS = {
+        '⚡': 250,
+        '🏛️': 200,
+        '⭐': 150,
+        '💎': 100,
+        '🏆': 75,
+        '🔱': 50,
+    };
     const REEL_LENGTH = 30; // Number of symbols on each reel track
     let symbolHeight = 0; // Will be calculated after populating reels
+    const REALITY_CHECK_INTERVAL = 60000; // 1 minute
 
     // --- GAME LOGIC ---
 
@@ -92,13 +103,16 @@ function initializeGame() {
         return 0.20;
     };
 
-    const handleWin = () => {
-        // Sound and lightning are now handled immediately when reel stops
+    const handleWin = (winSymbol) => {
         state.wins++;
         
-        const prize = 50 + Math.floor(Math.random() * 6) * 10; 
+        const prize = PAYOUTS[winSymbol];
         state.credits += prize;
         
+        // --- CORRECTED LOGIC ---
+        // Subtract the prize from the house's earnings.
+        state.houseEarnings -= prize;
+
         if (prize <= COST_PER_SPIN) {
             elements.winLoseMessage.textContent = `WIN: ${prize} (BUT YOU LOST CREDITS)`;
             elements.winLoseMessage.classList.add('win-message', 'text-orange-400');
@@ -109,7 +123,6 @@ function initializeGame() {
     };
 
     const handleLoss = () => {
-        // Sound is now handled immediately when reel stops
         state.losses++;
         elements.winLoseMessage.textContent = 'SO CLOSE!';
         elements.winLoseMessage.classList.remove('win-message', 'text-green-400', 'text-orange-400');
@@ -123,7 +136,9 @@ function initializeGame() {
         state.spinCount++;
         state.credits -= COST_PER_SPIN;
         
-        // --- FIXED SOUND HANDLING - Only play spin sound once ---
+        // The house always collects the bet amount.
+        state.houseEarnings += COST_PER_SPIN;
+        
         playSound('sound-spin');
         
         elements.winLoseMessage.textContent = '';
@@ -147,9 +162,10 @@ function initializeGame() {
         const didWin = Math.random() < getCurrentWinOdds();
         const stopPositions = [];
         let targetSymbols = [];
+        let winSymbol = null;
 
         if (didWin) {
-            const winSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+            winSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
             targetSymbols = [winSymbol, winSymbol, winSymbol];
         } else {
             const nearMissSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
@@ -178,10 +194,8 @@ function initializeGame() {
 
                 if (index === reelTracks.length - 1) {
                     
-                    // --- FIXED SOUND HANDLING - Stop spin sound when all reels stop ---
                     stopSound('sound-spin');
                     
-                    // --- PLAY WIN/LOSE SOUND IMMEDIATELY ---
                     if (didWin) {
                         playSound('sound-win');
                         elements.lightningOverlay.classList.add('active');
@@ -195,7 +209,7 @@ function initializeGame() {
                     const animationDuration = 1000;
                     setTimeout(() => {
                         if (didWin) {
-                            handleWin();
+                            handleWin(winSymbol);
                         } else {
                             handleLoss();
                         }
@@ -204,6 +218,7 @@ function initializeGame() {
                         state.creditHistory.push(state.credits);
                         ui.updateStatsDisplays(elements, state);
                         ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
+                        ui.updateDynamicEducationalMessage(elements, state);
                         
                         setTimeout(() => {
                             elements.winLoseMessage.classList.remove('win-message');
@@ -231,12 +246,28 @@ function initializeGame() {
         ui.renderCreditsChart(elements, state.creditHistory);
     };
 
+    const realityCheck = () => {
+        const timeDiff = new Date() - state.startTime;
+        const minutes = Math.floor(timeDiff / 60000);
+        const netChange = state.credits - 1000;
+        const resultText = netChange >= 0 ? `profited <span class="text-green-400">${netChange}</span>` : `lost <span class="text-red-400">${Math.abs(netChange)}</span>`;
+        
+        if (minutes < 1) return; // Don't show the modal before at least one minute has passed
+
+        const message = `You have been playing for <strong>${minutes} minute${minutes === 1 ? '' : 's'}</strong>. You have ${resultText} credits.`;
+        ui.showRealityCheckModal(elements, message);
+    };
+
     // --- EVENT LISTENERS ---
     elements.spinButton.addEventListener('click', handleSpin);
     elements.cashoutButton.addEventListener('click', handleCashOut);
     elements.modalCloseButton.addEventListener('click', () => {
         playSound('sound-click');
         ui.hideModal(elements);
+    });
+    elements.realityCheckCloseButton.addEventListener('click', () => {
+        playSound('sound-click');
+        ui.hideRealityCheckModal(elements);
     });
     elements.playAgainButton.addEventListener('click', () => {
         playSound('sound-click');
@@ -245,7 +276,11 @@ function initializeGame() {
 
     // --- INITIAL RENDER ---
     populateReels();
+    ui.displayPayouts(elements, PAYOUTS);
     ui.updateStatsDisplays(elements, state);
     ui.updateSpinButtonState(elements, state, COST_PER_SPIN);
     ui.updateEducationalInfo(elements, state.spinCount, getCurrentWinOdds());
+
+    // Start the reality check timer
+    setInterval(realityCheck, REALITY_CHECK_INTERVAL);
 }

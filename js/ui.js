@@ -21,6 +21,8 @@ export const getDOMElements = () => ({
     winOddsPercent: document.getElementById('win-odds-percent'),
     oddsExplanation: document.getElementById('odds-explanation'),
     educationalMessage: document.getElementById('educational-message'),
+    payoutsInfo: document.getElementById('payouts-info'),
+    houseEarningsDisplay: document.getElementById('house-earnings'),
     phaseModal: document.getElementById('phase-modal'),
     modalTitle: document.getElementById('modal-title'),
     modalBody: document.getElementById('modal-body'),
@@ -31,6 +33,10 @@ export const getDOMElements = () => ({
     cashoutSummary: document.getElementById('cashout-summary'),
     playAgainButton: document.getElementById('play-again-button'), // REVISED
     creditsChartCanvas: document.getElementById('credits-chart'),
+    // Reality Check Modal Elements
+    realityCheckModal: document.getElementById('reality-check-modal'),
+    realityCheckBody: document.getElementById('reality-check-body'),
+    realityCheckCloseButton: document.getElementById('reality-check-close-button'),
 });
 
 let creditsChart = null; // To hold the chart instance
@@ -117,6 +123,25 @@ export const hideModal = (elements) => {
     elements.phaseModal.classList.add('hidden');
 };
 
+/**
+ * Shows the reality check modal.
+ * @param {object} elements - The DOM elements object.
+ * @param {string} body - The main text content for the modal.
+ */
+export const showRealityCheckModal = (elements, body) => {
+    elements.realityCheckBody.innerHTML = body;
+    elements.realityCheckModal.classList.remove('hidden');
+};
+
+/**
+ * Hides the reality check modal.
+ * @param {object} elements - The DOM elements object.
+ */
+export const hideRealityCheckModal = (elements) => {
+    elements.realityCheckModal.classList.add('hidden');
+};
+
+
 // --- DISPLAY UPDATE FUNCTIONS ---
 /**
  * Updates all the statistics displays (credits, spins, etc.).
@@ -128,6 +153,7 @@ export const updateStatsDisplays = (elements, state) => {
     elements.spinCountDisplay.textContent = state.spinCount;
     elements.winsDisplay.textContent = state.wins;
     elements.lossesDisplay.textContent = state.losses;
+    elements.houseEarningsDisplay.textContent = state.houseEarnings;
 };
 
 /**
@@ -145,6 +171,20 @@ export const updateSpinButtonState = (elements, state, costPerSpin) => {
         elements.spinButton.textContent = 'INSUFFICIENT CREDITS';
     } else {
         elements.spinButton.textContent = `SPIN (COST: ${costPerSpin})`;
+    }
+};
+
+/**
+ * Displays the payout information.
+ * @param {object} elements - The DOM elements object.
+ * @param {object} payouts - The payout values for each symbol.
+ */
+export const displayPayouts = (elements, payouts) => {
+    elements.payoutsInfo.innerHTML = '';
+    for (const symbol in payouts) {
+        const payoutDiv = document.createElement('div');
+        payoutDiv.innerHTML = `<span>${symbol}</span> <span>${payouts[symbol]}</span>`;
+        elements.payoutsInfo.appendChild(payoutDiv);
     }
 };
 
@@ -198,5 +238,18 @@ export const updateEducationalInfo = (elements, spinCount, odds) => {
     if (currentPhase.modalTitle && spinCount === newPhaseTriggerSpin) {
         elements.educationalMessage.innerHTML = currentPhase.educationalMessage;
         showModal(elements, currentPhase.modalTitle, currentPhase.modalBody);
+    }
+};
+
+/**
+ * Updates the educational message with dynamic content based on game state.
+ * @param {object} elements - The DOM elements object.
+ * @param {object} state - The current game state object.
+ */
+export const updateDynamicEducationalMessage = (elements, state) => {
+    if (state.losses > 3 && state.credits < 500) {
+        elements.educationalMessage.innerHTML = "Feeling the urge to win back what you've lost? This is called 'chasing losses' and it's a common trap.";
+    } else if (state.wins > 5) {
+        elements.educationalMessage.innerHTML = "You're on a winning streak! It's easy to feel invincible, but remember each spin is random.";
     }
 };
