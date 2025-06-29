@@ -160,14 +160,14 @@ body.menu-is-open {
 
 .reel-symbol {
     width: 100%;
-    /* REVISED: Explicit height to ensure 3 rows are visible */
     height: calc(3.5rem * 1.2);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3.5rem; /* Responsive font size */
     color: #e3d9ff;
-    line-height: 1.2;
+    /* FIXED: Set line-height to 1 to normalize vertical alignment */
+    line-height: 1;
     flex-shrink: 0;
 }
 
