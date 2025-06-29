@@ -278,9 +278,9 @@
   "quiz_data_path_recovery": [
     {
       "question": "Berdasarkan UU ITE Indonesia, berapa hukuman penjara maksimal bagi seseorang yang tertangkap bermain judi online?",
-      "options": ["6 bulan", "1 tahun", "4 tahun", "6 tahun"],
-      "correctAnswer": "6 tahun",
-      "explanation": "Berdasarkan Pasal 45, Ayat (2) UU ITE, setiap orang yang terbukti bersalah mendistribusikan, mentransmisikan, atau membuat konten perjudian dapat diakses (termasuk bermain) menghadapi hukuman penjara maksimal 6 tahun dan/atau denda Rp1 miliar."
+      "options": ["6 bulan", "1 tahun", "6 tahun", "10 tahun"],
+      "correctAnswer": "10 tahun",
+      "explanation": "Berdasarkan Pasal 45, Ayat (2) UU ITE, setiap orang yang terbukti bersalah mendistribusikan, mentransmisikan, atau membuat konten perjudian dapat diakses (termasuk bermain) menghadapi hukuman penjara maksimal 10 tahun dan/atau denda Rp10 miliar."
     },
     {
       "question": "Apa asas hukum di mana undang-undang yang lebih spesifik (seperti UU ITE) diprioritaskan atas undang-undang yang lebih umum (seperti KUHP) dalam menuntut kasus online?",

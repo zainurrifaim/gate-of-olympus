@@ -278,9 +278,9 @@
   "quiz_data_path_recovery": [
     {
       "question": "Under Indonesia's UU ITE (Law on Information and Electronic Transactions), what is the maximum prison sentence for a person caught playing online gambling?",
-      "options": ["6 months", "1 year", "4 years", "6 years"],
-      "correctAnswer": "6 years",
-      "explanation": "Under Article 45, Paragraph (2) of the UU ITE, any person found guilty of distributing, transmitting, or making gambling content accessible (which includes playing) faces a maximum prison sentence of 6 years and/or a fine of Rp 1 billion."
+      "options": ["6 months", "1 year", "6 years", "10 years"],
+      "correctAnswer": "10 years",
+      "explanation": "Under Article 45, Paragraph (2) of the UU ITE, any person found guilty of distributing, transmitting, or making gambling content accessible (which includes playing) faces a maximum prison sentence of 10 years and/or a fine of Rp 10 billion."
     },
     {
       "question": "What is the legal principle where a more specific law (like UU ITE) is prioritized over a more general law (like the KUHP) in prosecuting online cases?",
