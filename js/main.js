@@ -71,26 +71,38 @@ function initializeGame() {
         '🏆': 75,
         '🔱': 40,
     };
-    const REEL_LENGTH = 30; // Number of symbols on each reel track
+
+    // --- NEW: REEL STRIPS ---
+    // These arrays define the fixed order of symbols on each reel.
+    // This is more realistic than pure randomness on each spin.
+    const REEL_1_STRIP = ['⚡', '💎', '🏛️', '🏆', '⭐', '🔱', '💎', '🏆', '🏛️', '⚡', '⭐', '🔱', '💎', '🏆', '⚡', '🏛️', '⭐', '🔱', '💎', '🏆', '🏛️', '⭐', '⚡', '🔱'];
+    const REEL_2_STRIP = ['💎', '🏆', '🔱', '⭐', '⚡', '🏛️', '🏆', '⭐', '💎', '🔱', '⚡', '🏛️', '💎', '🏆', '⭐', '🔱', '⚡', '🏛️', '⭐', '🏆', '💎', '🔱', '⚡', '🏛️'];
+    const REEL_3_STRIP = ['🏆', '⚡', '⭐', '💎', '🔱', '🏛️', '⚡', '💎', '⭐', '🏆', '🔱', '🏛️', '⚡', '🏆', '⭐', '💎', '🔱', '🏛️', '🏆', '⚡', '⭐', '💎', '🔱', '🏛️'];
+    const ALL_REEL_STRIPS = [REEL_1_STRIP, REEL_2_STRIP, REEL_3_STRIP];
+
     let symbolHeight = 0; // Will be calculated after populating reels
+
     const REALITY_CHECK_INTERVAL = 60000; // 1 minute
 
     // --- GAME LOGIC ---
 
     /**
-     * Populates the reel tracks with random symbols.
+     * REVISED: Populates the reel tracks based on the fixed REEL_STRIP arrays.
      */
     function populateReels() {
-        reelTracks.forEach(track => {
+        reelTracks.forEach((track, i) => {
+            const strip = ALL_REEL_STRIPS[i];
             track.innerHTML = '';
-            for (let i = 0; i < REEL_LENGTH; i++) {
-                const symbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+            // Repeat the strip to ensure seamless looping
+            const repeatedStrip = [...strip, ...strip, ...strip];
+            repeatedStrip.forEach(symbol => {
                 const symbolDiv = document.createElement('div');
                 symbolDiv.className = 'reel-symbol';
                 symbolDiv.textContent = symbol;
                 track.appendChild(symbolDiv);
-            }
+            });
         });
+        // Calculate symbol height after they are rendered
         const firstSymbol = reelTracks[0].querySelector('.reel-symbol');
         if (firstSymbol) {
             symbolHeight = firstSymbol.offsetHeight;
@@ -133,7 +145,6 @@ function initializeGame() {
         state.credits -= COST_PER_SPIN;
         state.houseEarnings += COST_PER_SPIN;
         
-        // Animate House Earnings
         elements.houseEarningsDisplay.classList.add('animate-ping-once');
         setTimeout(() => {
             elements.houseEarningsDisplay.classList.remove('animate-ping-once');
@@ -149,7 +160,8 @@ function initializeGame() {
 
         reelTracks.forEach(track => {
             track.style.transition = 'none';
-            track.style.transform = `translateY(-${Math.random() * 1000}px)`;
+            // Start from a random position for visual variety
+            track.style.transform = `translateY(-${Math.random() * 10 * symbolHeight}px)`;
             track.classList.add('spinning');
         });
         
@@ -160,7 +172,6 @@ function initializeGame() {
         }, 100);
 
         const didWin = Math.random() < getCurrentWinOdds();
-        const stopPositions = [];
         let targetSymbols = [];
         let winSymbol = null;
 
@@ -168,19 +179,31 @@ function initializeGame() {
             winSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
             targetSymbols = [winSymbol, winSymbol, winSymbol];
         } else {
+            // Create a near-miss scenario
             const nearMissSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
             let finalSymbol;
             do {
                 finalSymbol = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
             } while (finalSymbol === nearMissSymbol);
-            targetSymbols = [nearMissSymbol, nearMissSymbol, finalSymbol];
+            // Ensure the symbols are shuffled for a more random near-miss
+            const nearMissPattern = [nearMissSymbol, nearMissSymbol, finalSymbol].sort(() => Math.random() - 0.5);
+            targetSymbols = nearMissPattern;
         }
 
+        // REVISED: Calculate stop positions based on reel strips
+        const stopPositions = [];
         reelTracks.forEach((track, i) => {
-            const symbolsOnTrack = Array.from(track.children).map(s => s.textContent);
-            let targetIndex = symbolsOnTrack.indexOf(targetSymbols[i], 10);
-            if (targetIndex < 2) targetIndex = symbolsOnTrack.lastIndexOf(targetSymbols[i], REEL_LENGTH - 3);
-            const position = -1 * (targetIndex - 1) * symbolHeight;
+            const strip = ALL_REEL_STRIPS[i];
+            const targetSymbol = targetSymbols[i];
+
+            // Find a random occurrence of the symbol on the strip
+            const possibleIndexes = strip.map((s, idx) => s === targetSymbol ? idx : -1).filter(idx => idx !== -1);
+            const targetIndex = possibleIndexes[Math.floor(Math.random() * possibleIndexes.length)];
+            
+            // Calculate position to land the symbol in the middle row.
+            // We add strip.length to the calculation to ensure we are on the second repetition of the strip,
+            // allowing for a smoother 'spin down' animation.
+            const position = -1 * (targetIndex + strip.length - 1) * symbolHeight;
             stopPositions.push(position);
         });
 

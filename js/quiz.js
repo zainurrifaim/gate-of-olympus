@@ -1,5 +1,6 @@
 import { initI18n, getString, getTranslatedData, translatePage } from './i18n.js';
-import { loadComponent, initializeNavbar } from './utility.js';
+// ADDED: playSound to the import list
+import { loadComponent, initializeNavbar, playSound } from './utility.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // 1. Initialize i18n
@@ -44,7 +45,11 @@ function initializeQuiz() {
             const categoryButton = document.createElement('button');
             categoryButton.className = 'quiz-option p-6 rounded-lg text-center h-32 flex items-center justify-center font-cinzel font-bold text-xl';
             categoryButton.textContent = categories[key];
-            categoryButton.onclick = () => startQuiz(key, categories[key]);
+            // ADDED: Click sound for selecting a category
+            categoryButton.onclick = () => {
+                playSound('sound-click');
+                startQuiz(key, categories[key]);
+            };
             categoriesGrid.appendChild(categoryButton);
         }
         quizContainer.appendChild(categoriesGrid);
@@ -100,8 +105,12 @@ function initializeQuiz() {
         const allOptions = quizContainer.querySelectorAll('.quiz-option');
         let isCorrect = selectedAnswer === questionData.correctAnswer;
 
+        // ADDED: Sound for correct or incorrect answers
         if (isCorrect) {
             score++;
+            playSound('sound-win');
+        } else {
+            playSound('sound-lose');
         }
 
         allOptions.forEach(button => {
@@ -126,7 +135,9 @@ function initializeQuiz() {
         nextButton.className = 'spin-button mt-6 w-full py-3 text-xl font-bold rounded-lg';
         const isLastQuestion = currentQuestionIndex === currentQuestions.length - 1;
         nextButton.textContent = getString(isLastQuestion ? 'show_results_button' : 'next_question_button');
+        // ADDED: Click sound for the next/results button
         nextButton.onclick = () => {
+            playSound('sound-click');
             currentQuestionIndex++;
             renderQuestion();
         };
@@ -134,6 +145,9 @@ function initializeQuiz() {
     }
     
     function renderResults() {
+        // ADDED: Sound for showing the final results
+        playSound('sound-lightning');
+        
         progressBar.style.width = `100%`;
         progressText.textContent = getString('quiz_complete');
         
@@ -150,8 +164,12 @@ function initializeQuiz() {
                 </div>
             </div>
         `;
-
-        document.getElementById('retry-quiz-button').onclick = renderCategorySelector;
+        
+        // ADDED: Click sound for trying another quiz
+        document.getElementById('retry-quiz-button').onclick = () => {
+            playSound('sound-click');
+            renderCategorySelector();
+        };
     }
 
     renderCategorySelector();
