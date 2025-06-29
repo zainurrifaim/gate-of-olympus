@@ -5,10 +5,10 @@
   "nav_quiz": "Kuis",
   "nav_about": "Tentang",
   "header_title": "Gerbang Olympus",
-  "header_subtitle": "Pengalaman Slot Edukasi",
-  "entry_button": "Masuk ke Gerbang",
+  "header_subtitle": "Pengalaman Slot Edukatif",
+  "entry_button": "Masuk ke Gerbang Olympus",
   "spin_button_text": "PUTAR",
-  "spin_button_cost": "BIAYA PUTARAN",
+  "spin_button_cost": "BIAYA",
   "insufficient_credits": "KREDIT ANDA TIDAK CUKUP",
   "cash_out_button": "CAIRKAN",
   "credits_label": "Kredit",
@@ -17,101 +17,326 @@
   "losses_label": "Kalah",
   "win_odds_label": "Peluang Menang Saat Ini",
   "how_it_works_label": "Cara Kerja",
-  "educational_message_default": "Game ini menunjukkan bagaimana mesin slot dirancang untuk memanipulasi pemain. Perhatikan bagaimana peluang dan perasaan Anda berubah saat bermain.",
   "payouts_label": "Pembayaran Simbol",
   "house_earnings_label": "Pendapatan Bandar",
   "footer_warning_title": "Peringatan Judi",
-  "footer_warning_text": "Judi sungguhan dapat menyebabkan kecanduan dan kerugian finansial yang serius. Jika Anda atau seseorang yang Anda kenal memiliki masalah perjudian, segera cari bantuan. Hubungi dewan nasional untuk masalah perjudian atau kelompok dukungan setempat.",
+  "footer_warning_text": "Judi dapat menyebabkan kecanduan dan kerugian finansial. Jika Anda atau seseorang yang Anda kenal memiliki masalah judi, segera cari bantuan profesional atau hubungi kelompok pendukung setempat.",
   "win_message_generic": "SELAMAT, ANDA MENANG!",
   "win_message_loss": "MENANG: {prize} (TAPI ANDA KEHILANGAN KREDIT)",
   "lose_message": "NYARIS MENANG!",
   "loss_disguised_as_win": "Kekalahan yang Disamarkan sebagai Kemenangan",
-  "phase1_explanation": "Fase 1: Pancingan. Peluang dibuat sangat tinggi untuk membuat Anda merasa menang itu mudah.",
-  "phase2_explanation": "Fase 2: Transisi. Peluang telah turun secara signifikan.",
-  "phase3_explanation": "Fase 3: Keuntungan Bandar. Peluang rendah, mencerminkan cara kerja slot sungguhan.",
+  "phase1_explanation": "<strong>Fase 1: Pancingan.</strong> Peluang menang dibuat sangat tinggi untuk memberikan kesan bahwa menang itu mudah dan sering.",
+  "phase2_explanation": "<strong>Fase 2: Transisi.</strong> Peluang mulai menurun secara signifikan, membuat permainan terasa lebih sulit.",
+  "phase3_explanation": "<strong>Fase 3: Keuntungan Bandar.</strong> Peluang menang sangat rendah, mencerminkan kondisi nyata mesin slot di kasino sungguhan.",
   "phase2_modal_title": "Fase 2: Peluang Berubah",
-  "phase2_modal_body": "Probabilitas menang turun dari 90% menjadi 50%. Ini sering dilakukan di game sungguhan untuk membuat Anda merasa harus mengejar ‘keberuntungan’ Anda.",
+  "phase2_modal_body": "Probabilitas menang menurun dari <strong>90% menjadi 50%</strong>. Ini sering diterapkan di game sungguhan untuk membuat pemain merasa harus terus mengejar 'keberuntungan' mereka.",
   "phase3_modal_title": "Fase 3: Keuntungan Bandar",
-  "phase3_modal_body": "Peluang menang telah anjlok menjadi 20%. Ini adalah fase realistis di mana bandar memiliki keunggulan matematis yang besar.",
+  "phase3_modal_body": "Peluang menang kini merosot ke <strong>20%</strong>. Ini adalah fase realistis di mana bandar memiliki keunggulan matematis besar yang sulit dilawan.",
   "cashout_modal_title": "Hasil Sesi",
-  "cashout_summary": "Anda mulai dengan {start} kredit dan berakhir dengan {end}. Secara keseluruhan, Anda {result} kredit.",
-  "cashout_profit": "mendapatkan keuntungan sebesar {change}",
-  "cashout_loss": "mengalami kerugian sebesar {change}",
-  "cashout_chart_explainer": "Grafik ini menunjukkan saldo kredit Anda setelah setiap putaran. Perhatikan bahwa meski sesekali menang, tren keseluruhan bisa saja menurun.",
+  "cashout_summary": "Anda memulai dengan <strong>{start}</strong> kredit dan mengakhiri dengan <strong>{end}</strong> kredit. Secara keseluruhan, Anda {result} kredit.",
+  "cashout_profit": "mendapatkan keuntungan <span class='text-green-400'>{change}</span>",
+  "cashout_loss": "mengalami kerugian <span class='text-red-400'>{change}</span>",
+  "cashout_chart_explainer": "Grafik ini menunjukkan saldo kredit Anda setelah setiap putaran. Perhatikan bahwa meski sesekali menang, tren keseluruhan bisa menurun.",
   "play_again_button": "Main Lagi",
   "reality_check_title": "Pengecekan Realitas",
-  "reality_check_body": "Anda telah bermain selama {minutes} menit. Anda telah {result} kredit.",
+  "reality_check_body": "Anda sudah bermain selama <strong>{minutes} menit</strong>. Anda {result} kredit.",
   "reality_check_continue_button": "Lanjutkan Bermain",
-  "dynamic_chasing_losses": "Merasa terdorong untuk memenangkan kembali uang yang hilang? Ini disebut ‘mengejar kerugian’, dan ini adalah jebakan yang sangat umum.",
-  "dynamic_winning_streak": "Anda sedang dalam rentetan kemenangan! Sangat mudah untuk merasa tak terkalahkan, tetapi ingatlah setiap putaran adalah acak.",
+  "dynamic_chasing_losses": "Merasa terdorong untuk memenangkan kembali uang yang hilang? Ini disebut 'mengejar kerugian', salah satu jebakan umum yang berbahaya.",
+  "dynamic_winning_streak": "Anda sedang dalam rentetan kemenangan! Sangat mudah merasa tak terkalahkan, tetapi ingat setiap putaran bersifat acak.",
+  "educational_message_default": "Game ini memperlihatkan bagaimana mesin slot sengaja dirancang untuk memanipulasi pemain. Perhatikan bagaimana peluang dan emosi Anda berubah selama bermain.",
   "quiz_title": "Kuis Pengetahuan",
   "quiz_choose_category": "Pilih Kategori",
   "quiz_question_progress": "Pertanyaan {current} dari {total}",
   "quiz_complete": "Kuis Selesai!",
   "quiz_results_title": "Hasil Kuis",
-  "quiz_results_summary": "Anda menjawab benar {score} dari {total} pertanyaan.",
-  "quiz_results_encouragement": "Pengetahuan adalah pertahanan terbaik Anda. Semakin Anda memahami matematika dan psikologi di balik permainan ini, semakin Anda bisa bermain dengan aman.",
+  "quiz_results_summary": "Anda menjawab dengan benar {score} dari {total} pertanyaan.",
+  "quiz_results_encouragement": "Pengetahuan adalah perlindungan terbaik Anda. Semakin memahami matematika dan psikologi di balik permainan ini, semakin besar peluang Anda terhindar dari risiko perjudian.",
   "quiz_try_another": "Coba Kuis Lain",
   "correct_answer_text": "Benar!",
   "incorrect_answer_text": "Kurang Tepat.",
   "next_question_button": "Pertanyaan Berikutnya →",
   "show_results_button": "Tampilkan Hasil",
-  "quiz_categories": {
-    "myth": "Mitos & Tanda-Tanda Perjudian",
-    "math": "Matematika Slot",
-    "psychology": "Trik Psikologis"
-  },
-  "quiz_data_myth": [
-    {
-      "question": "Jika mesin slot sudah lama tidak membayar, maka mesin itu 'sebentar lagi' akan menang.",
-      "options": [
-        "Benar",
-        "Salah"
-      ],
-      "correctAnswer": "Salah",
-      "explanation": "Setiap putaran bersifat acak dan independen, ditentukan oleh RNG. Hasil masa lalu tidak berdampak pada hasil di masa depan."
-    }
-  ],
-  "quiz_data_math": [
-    {
-      "question": "Apa jaminan dari RTP (Return to Player) sebesar 96%?",
-      "options": [
-        "Anda akan menang 96% dari waktu",
-        "Untuk setiap $100 yang dipertaruhkan, Anda mendapatkan kembali tepat $96",
-        "Mesin membayar kembali 96% dari semua uang yang dipertaruhkan selama jutaan putaran",
-        "Kasino hanya mendapat untung 4% dari Anda"
-      ],
-      "correctAnswer": "Mesin membayar kembali 96% dari semua uang yang dipertaruhkan selama jutaan putaran",
-      "explanation": "RTP adalah rata-rata statistik jangka panjang, bukan jaminan untuk satu sesi. Hasil jangka pendek Anda bisa sangat bervariasi."
-    }
-  ],
-  "quiz_data_psychology": [
-    {
-      "question": "Apa itu 'kerugian yang disamarkan sebagai kemenangan'?",
-      "options": [
-        "Memenangkan jackpot",
-        "Memenangkan kembali persis jumlah taruhan Anda",
-        "Pembayaran yang kurang dari taruhan awal Anda",
-        "Hampir kena di gulungan"
-      ],
-      "correctAnswer": "Pembayaran yang kurang dari taruhan awal Anda",
-      "explanation": "Slot menggunakan efek perayaan bahkan untuk kemenangan yang lebih kecil dari taruhan Anda, menipu otak Anda sehingga merasa seperti menang padahal sebenarnya Anda sedang kehilangan uang."
-    }
-  ],
-  "learning_center_title": "Pusat Pembelajaran",
-  "back_to_game_button": "Kembali ke Permainan",
-  "learning_rng_title": "⚡ Apa itu Random Number Generator (RNG)?",
-  "learning_rng_text": "Setiap mesin slot modern menggunakan RNG. Ini adalah algoritma komputer yang menghasilkan ribuan angka acak per detik. Saat Anda menekan \"putar\", mesin menggunakan angka terbaru untuk menentukan hasilnya. Ini berarti setiap putaran sepenuhnya independen dan tidak dapat diprediksi. Tidak ada yang namanya mesin ‘panas’ atau ‘dingin’.",
-  "learning_edge_title": "🏛️ Penjelasan Keuntungan Bandar",
-  "learning_edge_text": "\"Keuntungan bandar\" adalah keuntungan matematis yang dimiliki kasino pada setiap taruhan. Untuk mesin slot, ini diwakili oleh persentase Return to Player (RTP). RTP 95% berarti bahwa, selama jutaan putaran, mesin diprogram untuk membayar kembali 95% dari semua uang yang dipertaruhkan. Sisa 5% adalah keuntungan kasino. Dalam jangka panjang, bandar selalu menang.",
-  "learning_psychology_title": "💎 Psikologi Perjudian",
-  "learning_psychology_text": "Perjudian dirancang agar menarik secara psikologis. Lampu berkedip, suara yang menarik, dan \"hampir kena\" semuanya memicu pelepasan dopamin di otak Anda, membuat Anda ingin bermain lebih banyak. \"Kerugian yang disamarkan sebagai kemenangan\" (di mana Anda memenangkan kembali kurang dari taruhan Anda) juga dapat menipu Anda sehingga merasa seperti menang, padahal sebenarnya Anda sedang kehilangan uang.",
   "about_title": "Tentang Proyek Ini",
   "about_mission_title": "Misi Kami",
-  "about_mission_text": "Game ini dibuat sebagai alat pendidikan untuk membuka tirai tentang cara kerja mesin slot. Dengan mensimulasikan pengalaman slot dan secara terbuka mengungkapkan bagaimana peluang dapat dimanipulasi, kami berharap dapat memberdayakan pemain dengan pengetahuan, menyoroti risiko perjudian, dan mempromosikan kebiasaan bermain yang lebih aman.",
-  "about_creator_title": "Tentang Pembuat",
-  "about_creator_text": "Berbekal semangat memanfaatkan teknologi untuk pendidikan, Zainur mengembangkan game ini agar pembelajaran tentang risiko perjudian menjadi interaktif dan berdampak. Proyek ini mencerminkan komitmen untuk menciptakan alat yang menumbuhkan kesadaran dan pemikiran kritis.",
+  "about_mission_text": "Game ini dibuat sebagai media edukasi untuk menjelaskan cara kerja mesin slot. Dengan menyimulasikan pengalaman bermain dan memperlihatkan bagaimana peluang dimanipulasi, kami berharap dapat menambah pengetahuan dan menyoroti risiko perjudian.",
+  "about_creator_title": "Tentang Pengembang",
+  "about_creator_text": "Dengan semangat memanfaatkan teknologi untuk pendidikan, Zainur mengembangkan game ini untuk menyoroti risiko perjudian melalui media interaktif yang berdampak. Proyek ini adalah wujud komitmen untuk mengedukasi masyarakat agar lebih sadar dan kritis terhadap perjudian.",
   "about_help_title": "Dapatkan Bantuan",
-  "about_help_text": "Perjudian dapat membuat ketagihan. Jika Anda atau seseorang yang Anda kenal sedang kesulitan, jangan ragu untuk mencari bantuan. Ada banyak sumber daya gratis dan rahasia yang tersedia untuk memberikan dukungan.",
-  "about_help_link": "Dewan Nasional untuk Masalah Perjudian →"
+  "about_help_text": "Judi dapat menyebabkan kecanduan. Jika Anda atau seseorang yang Anda kenal sedang kesulitan, jangan ragu untuk mencari bantuan profesional. Tersedia banyak sumber daya gratis dan rahasia untuk membantu Anda.",
+  "about_help_link": "Dapatkan Bantuan →",
+  "learning_center_title": "Pusat Pembelajaran",
+  "back_to_game_button": "Kembali ke Permainan",
+  "lc_part1_title": "Bagian I: Arsitektur Kecanduan",
+  "lc_part1_subtitle1": "Kasino Global di Ujung Jari Anda",
+  "lc_part1_p1": "Judi online, atau iGaming, adalah segala bentuk taruhan pada permainan untung-untungan atau keterampilan yang dilakukan melalui internet, termasuk slot virtual, poker, dan taruhan olahraga.<sup>[1, 2, 3]</sup> Ini berbeda dengan \"game online\" biasa yang tidak melibatkan taruhan uang. Judi online lebih berisiko karena aksesibilitas 24/7,<sup>[4, 5]</sup> anonimitas yang menurunkan rasa segan,<sup>[6, 7]</sup> dan banyaknya variasi permainan yang imersif.<sup>[5, 8]</sup>",
+  "lc_part1_p2": "Platform judi yang menargetkan Indonesia sering beroperasi dari pusat lepas pantai di Asia Tenggara—terutama Kamboja, Filipina, Myanmar, dan Laos—membuatnya sulit dijangkau aparat hukum Indonesia.<sup>[9, 10, 11, 12, 13]</sup> Mereka menggunakan berbagai taktik canggih, seperti sering berganti nama domain dan mendorong pemain memakai VPN untuk menghindari blokir pemerintah.<sup>[14, 15]</sup>",
+  "lc_part1_subtitle2": "Rekayasa Kompulsi: Perangkat Psikologis",
+  "lc_part1_p3": "Kekuatan adiktif slot online bukan kebetulan; ini hasil rekayasa psikologis yang dirancang untuk mengeksploitasi bias kognitif dan memanipulasi sistem penghargaan otak.<sup>[21, 22]</sup>",
+  "lc_part1_li1_title": "Penguatan Rasio Variabel:",
+  "lc_part1_li1_text": "Hadiah diberikan setelah jumlah putaran yang tak dapat diprediksi. Ini adalah bentuk penguatan paling kuat, menghasilkan perilaku yang tinggi dan stabil, serta sulit dihentikan. Otak melepaskan dopamin saat mengantisipasi hadiah, membuat aktivitas memutar gulungan terasa sangat memuaskan, mirip efek zat adiktif.<sup>[23, 24, 25, 26, 27]</sup>",
+  "lc_part1_li2_title": "Efek Nyaris Menang (Near-Miss):",
+  "lc_part1_li2_text": "Hasil yang terlihat hampir menang (misalnya dua simbol jackpot sejajar dan yang ketiga nyaris) mengaktifkan area otak yang sama dengan kemenangan, terutama pada penjudi bermasalah. Mesin slot sering dirancang menghasilkan frekuensi nyaris menang lebih tinggi dari acak, mendorong pemain terus bermain.<sup>[28, 29, 30, 31]</sup>",
+  "lc_part1_li3_title": "Ilusi Kontrol:",
+  "lc_part1_li3_text": "Fitur seperti tombol \"stop\" atau memilih pola taruhan menciptakan keyakinan palsu bahwa pemain dapat mengendalikan hasil yang sepenuhnya acak. Ilusi ini menjadi dasar kecanduan judi.<sup>[33, 34, 35, 36, 37]</sup>",
+  "lc_part1_li4_title": "Kerugian yang Disamarkan sebagai Kemenangan (LDW):",
+  "lc_part1_li4_text": "Fitur ini membuat putaran yang memberikan kemenangan lebih kecil dari taruhan tetap dirayakan dengan lampu dan suara seperti menang besar, menutupi kerugian finansial dan memperkuat perilaku bermain.<sup>[24]</sup>",
+  "lc_part1_li5_title": "Mengejar Kerugian (Chasing Losses):",
+  "lc_part1_li5_text": "Dorongan irasional untuk terus berjudi demi mengembalikan uang yang hilang, membuat pemain terjebak dalam lingkaran kehancuran finansial.<sup>[7, 21, 26]</sup>",
+  "lc_part2_title": "Bagian II: Krisis di Indonesia",
+  "lc_part2_subtitle1": "Bangsa dalam Kepungan: Realitas Statistik",
+  "lc_part2_p1": "Data resmi mengungkapkan krisis nasional. Jumlah penjudi online aktif di Indonesia diperkirakan mencapai jutaan, dengan beberapa sumber pemerintah menyebutkan angka setinggi 8,8 juta orang.<sup>[39, 40, 41, 42]</sup> Tren yang paling mengkhawatirkan adalah epidemi di kalangan kaum muda: sekitar 80.000 pemain berusia di bawah 10 tahun, dan lebih dari 440.000 berusia antara 11 dan 20 tahun.<sup>[17, 42, 44]</sup> Diperkirakan 80% dari semua pemain berasal dari komunitas berpenghasilan menengah ke bawah, membuat mereka sangat rentan terhadap fantasi \"cepat kaya\" yang dijajakan oleh platform ini.<sup>[39, 40, 41, 46]</sup>",
+  "lc_part2_subtitle2": "Skala Ekonomi",
+  "lc_part2_p2": "Skala finansialnya sangat mengejutkan. Nilai transaksi meledak hingga <strong>Rp 327 triliun</strong> pada tahun 2023, peningkatan besar dari Rp 57 triliun pada tahun 2021.<sup>[41, 43, 44, 48, 49, 50, 51]</sup> Hanya pada kuartal pertama tahun 2024, transaksi telah melampaui Rp 100 triliun.<sup>[43, 49]</sup> Uang ini tersedot keluar dari ekonomi lokal, mewakili pelarian modal non-produktif yang melemahkan PDB negara dan nilai Rupiah.<sup>[41, 46, 52, 68]</sup>",
+  "lc_part2_subtitle3": "Kehancuran Sosio-Ekonomi",
+  "lc_part2_p3": "Dampaknya meluas ke masyarakat. Kecanduan sering menyebabkan kehancuran finansial, memicu penggunaan pinjaman online (pinjol) predator, yang menjadi penyebab utama munculnya \"kemiskinan baru\".<sup>[18, 59, 60]</sup> Tekanan keuangan juga kerap memicu konflik rumah tangga hingga perceraian.<sup>[41, 61, 62, 63, 64]</sup> Selain itu, kecanduan judi adalah gangguan kesehatan mental serius yang berhubungan erat dengan depresi, kecemasan, bahkan pikiran bunuh diri.<sup>[58, 61, 65, 66]</sup>",
+  "lc_part3_title": "Bagian III: Langkah ke Depan",
+  "lc_part3_subtitle1": "Konsekuensi Hukum di Indonesia",
+  "lc_part3_p1": "Hukum Indonesia memberlakukan hukuman berat bagi perjudian online. Berdasarkan UU ITE (UU No. 1 Tahun 2024), siapa pun yang mendistribusikan, mentransmisikan, atau membuat konten perjudian dapat diakses menghadapi hukuman penjara maksimal <strong>6 tahun</strong> dan/atau denda hingga <strong>Rp 1 miliar</strong>.<sup>[69, 70, 71, 72, 73]</sup> KUHP juga memiliki hukuman berat bagi penyelenggara maupun pemain.<sup>[69, 72]</sup>",
+  "lc_part3_subtitle2": "Mengenali Tanda-tanda Kecanduan",
+  "lc_part3_p2": "Tanda-tanda peringatan utama termasuk terpaku pada perjudian, perlu bertaruh dengan jumlah uang yang lebih besar untuk mendapatkan kegembiraan yang sama (toleransi), berbohong untuk menyembunyikan keterlibatan, dan \"mengejar\" kerugian.<sup>[58, 75, 76]</sup>",
+  "lc_part3_subtitle3": "Panduan untuk Mendapatkan Bantuan di Indonesia",
+  "lc_part3_p3": "Bantuan tersedia dan dapat diakses. Dalam sebuah kebijakan penting, pemerintah Indonesia telah mengonfirmasi bahwa rehabilitasi untuk kecanduan judi ditanggung oleh jaminan kesehatan nasional, <strong>BPJS Kesehatan</strong>, yang secara tepat membingkainya sebagai kondisi kesehatan yang dapat diobati.<sup>[80, 81]</sup>",
+  "lc_table_header_org": "Organisasi/Layanan",
+  "lc_table_header_support": "Jenis Dukungan",
+  "lc_table_header_access": "Cara Mengakses",
+  "lc_table_row1_org": "Hotline Kementerian Kesehatan (Kemenkes)",
+  "lc_table_row1_support": "Informasi & Rujukan",
+  "lc_table_row1_access": "Telepon: 1500-567 <sup>[79]</sup>",
+  "lc_table_row2_org": "PKJN RS Marzoeki Mahdi (Bogor)",
+  "lc_table_row2_support": "Perawatan Medis Khusus",
+  "lc_table_row2_access": "Melalui Kemenkes atau rumah sakit <sup>[79]</sup>",
+  "lc_table_row3_org": "Hotline WhatsApp Pemerintah",
+  "lc_table_row3_support": "Dukungan Obrolan & Info Langsung",
+  "lc_table_row3_access": "s.id/bersamastopjudol <sup>[82]</sup>",
+  "lc_table_row4_org": "Platform Tele-Psikiatri",
+  "lc_table_row4_support": "Konsultasi Pribadi",
+  "lc_table_row4_access": "Melalui aplikasi seluler (Halodoc, dll.) <sup>[83]</sup>",
+  "lc_table_row5_org": "Gamblers Anonymous",
+  "lc_table_row5_support": "Kelompok Dukungan Sebaya",
+  "lc_table_row5_access": "gamblersanonymous.org <sup>[84, 85, 86]</sup>",
+  "lc_references_title": "Referensi",
+  "quiz_categories": {
+    "digital_casino": "Kasino Digital 🎰",
+    "brain_siege": "Otak dalam Kepungan 🧠",
+    "national_crisis": "Krisis Nasional 🇮🇩",
+    "path_recovery": "Jalan Menuju Pemulihan 🙏"
+  },
+  "quiz_data_digital_casino": [
+    {
+      "question": "Apa perbedaan krusial yang mengubah \"game online\" yang tidak berbahaya menjadi \"iGaming\" yang berisiko?",
+      "options": ["Grafik dan suara yang lebih baik", "Adanya taruhan finansial", "Jumlah pemain yang terlibat", "Penggunaan smartphone"],
+      "correctAnswer": "Adanya taruhan finansial",
+      "explanation": "Perbedaan utamanya adalah adanya taruhan finansial. Hal ini mengubah aktivitas dari hiburan biasa menjadi permainan berisiko tinggi dengan konsekuensi psikologis dan ekonomi yang signifikan."
+    },
+    {
+      "question": "Platform judi online tersedia 24/7 di saku Anda. Ketersediaan konstan ini merupakan risiko besar karena...",
+      "options": ["Menguras baterai ponsel dengan cepat", "Menghabiskan banyak kuota internet", "Menghilangkan batasan alami, mendorong perjudian yang lebih sering dan intens", "Tidak se-sosial kasino sungguhan"],
+      "correctAnswer": "Menghilangkan batasan alami, mendorong perjudian yang lebih sering dan intens",
+      "explanation": "Tidak seperti kasino fisik yang memerlukan perjalanan dan beroperasi pada jam-jam tertentu, platform online selalu dapat diakses. Ketersediaan tanpa batas ini mendorong perjudian yang lebih lama dan intens, meningkatkan risiko kecanduan."
+    },
+    {
+      "question": "Apa itu \"efek disinhibisi\" yang terjadi ketika orang berjudi online?",
+      "options": ["Pemain merasa lebih percaya diri dengan keterampilan mereka", "Anonimitas membuat pemain mengambil risiko lebih besar daripada di depan umum", "Permainannya dirancang agar tidak terlalu sulit", "Pemain terganggu oleh notifikasi media sosial"],
+      "correctAnswer": "Anonimitas membuat pemain mengambil risiko lebih besar daripada di depan umum",
+      "explanation": "Lingkungan virtual memberikan \"jubah anonimitas,\" yang dapat menurunkan inhibisi seseorang. Fenomena psikologis ini, yang dikenal sebagai disinhibisi, membuat individu mengambil risiko finansial yang lebih besar dan berjudi untuk waktu yang lebih lama."
+    },
+    {
+      "question": "🕵️‍♂️ Anda adalah seorang investigator yang melacak sumber situs judi ilegal di Indonesia. Di mana kemungkinan besar Anda akan menemukan markas fisik mereka?",
+      "options": ["Di kantor berteknologi tinggi di Jakarta", "Di pusat-pusat lepas pantai seperti Kamboja, Filipina, atau Myanmar", "Tersebar di berbagai rumah di Indonesia", "Mereka tidak punya lokasi fisik; semuanya ada di cloud"],
+      "correctAnswer": "Di pusat-pusat lepas pantai seperti Kamboja, Filipina, atau Myanmar",
+      "explanation": "Sebagian besar situs judi ini dijalankan dari pusat-pusat lepas pantai di negara-negara Asia Tenggara lain di mana peraturan perjudian lebih lemah. Hal ini menciptakan tantangan yurisdiksi yang sangat besar bagi penegak hukum Indonesia."
+    },
+    {
+      "question": "Pemerintah memblokir sebuah situs judi. Bagaimana cara operator segera mengakali hal ini?",
+      "options": ["Mereka mengajukan keluhan resmi kepada pemerintah", "Mereka berhenti beroperasi di Indonesia", "Mereka menggunakan VPN dan terus-menerus mendaftarkan nama domain baru", "Mereka menawarkan diskon kepada pejabat pemerintah"],
+      "correctAnswer": "Mereka menggunakan VPN dan terus-menerus mendaftarkan nama domain baru",
+      "explanation": "Operator terlibat dalam permainan \"kucing-dan-tikus\" dengan pihak berwenang dengan menggunakan strategi penghindaran seperti mendaftarkan domain baru, menggunakan IP asing, dan mendorong pemain untuk menggunakan VPN untuk melewati firewall pemerintah."
+    },
+    {
+      "question": "Platform judi online sering kali merupakan \"cabang ritel\" publik dari operasi yang jauh lebih besar dan berbahaya. Apa yang terhubung dengan mereka?",
+      "options": ["Perusahaan pengembang perangkat lunak yang sah", "Jaringan hotel dan kasino internasional", "Sindikat kejahatan terorganisir transnasional yang canggih", "Organisasi amal penggalangan dana"],
+      "correctAnswer": "Sindikat kejahatan terorganisir transnasional yang canggih",
+      "explanation": "Platform ini sering kali terhubung dengan jaringan kriminal transnasional yang terlibat dalam kegiatan terlarang lainnya seperti perdagangan manusia, pencucian uang, dan perdagangan narkoba. Uang yang dipertaruhkan mendanai seluruh ekosistem kriminal ini."
+    },
+    {
+      "question": "Teknologi baru apa yang baru-baru ini mulai digunakan oleh pemerintah Indonesia (Kominfo) untuk meningkatkan kemampuannya dalam memblokir situs judi?",
+      "options": ["Blockchain", "Komputasi Kuantum", "Kecerdasan Buatan (AI)", "Pencitraan satelit canggih"],
+      "correctAnswer": "Kecerdasan Buatan (AI)",
+      "explanation": "Menyadari bahwa pemblokiran manual tidak cukup, pemerintah telah mulai menggunakan kecerdasan buatan (AI) untuk meningkatkan deteksi dan pemblokiran sejumlah besar situs web dan konten terkait perjudian."
+    }
+  ],
+  "quiz_data_brain_siege": [
+    {
+      "question": "Apa prinsip psikologis inti yang membuat mesin slot begitu adiktif?",
+      "options": ["Grafik yang berwarna-warni dan suara yang menarik", "Jadwal Penguatan Rasio Variabel", "Ilusi Kontrol", "Biaya per putaran yang rendah"],
+      "correctAnswer": "Jadwal Penguatan Rasio Variabel",
+      "explanation": "Mesin utama kecanduan adalah Jadwal Penguatan Rasio Variabel, di mana hadiah diberikan setelah jumlah putaran yang tidak dapat diprediksi. Ini menciptakan tingkat perilaku yang tinggi dan stabil yang sangat sulit untuk dihentikan."
+    },
+    {
+      "question": "Saat Anda bermain game slot, otak Anda melepaskan bahan kimia kesenangan \"dopamin.\" Kapan ini terjadi?",
+      "options": ["Hanya ketika Anda memenangkan jackpot besar", "Sebagai antisipasi hadiah potensial, bahkan jika Anda kalah", "Hanya setelah Anda bermain lebih dari satu jam", "Ketika Anda melihat iklan untuk game tersebut"],
+      "correctAnswer": "Sebagai antisipasi hadiah potensial, bahkan jika Anda kalah",
+      "explanation": "Sistem penghargaan otak melepaskan dopamin sebagai antisipasi kemenangan, bukan hanya saat menerimanya. Ini berarti tindakan memutar itu sendiri menjadi bermanfaat dan memaksa Anda untuk melanjutkan, bahkan selama rentetan kekalahan."
+    },
+    {
+      "question": "Anda memutar gulungan dan mendapatkan dua simbol jackpot, dengan yang ketiga hanya satu tempat lagi! Bagaimana otak penjudi bermasalah bereaksi terhadap \"nyaris menang\" ini?",
+      "options": ["Itu mendaftarkannya sebagai kerugian biasa", "Itu mengaktifkan sirkuit hadiah yang sama dengan kemenangan yang sebenarnya", "Itu memicu keinginan untuk beralih ke permainan yang berbeda", "Itu membuat mereka merasa tenang dan rileks"],
+      "correctAnswer": "Itu mengaktifkan sirkuit hadiah yang sama dengan kemenangan yang sebenarnya",
+      "explanation": "Bagi penjudi bermasalah, nyaris menang bukan hanya kerugian. Studi pencitraan otak menunjukkan itu mengaktifkan area otak terkait hadiah yang sama persis dengan kemenangan asli, menciptakan motivasi yang membuat frustrasi tetapi kuat untuk terus bermain."
+    },
+    {
+      "question": "Seorang pemain percaya bahwa mereka memiliki cara \"beruntung\" dalam menekan tombol putar untuk meningkatkan peluang mereka. Ini adalah contoh klasik dari...",
+      "options": ["Efek Nyaris Menang", "Kerugian yang Disamarkan sebagai Kemenangan", "Ilusi Kontrol", "Mengejar Kerugian"],
+      "correctAnswer": "Ilusi Kontrol",
+      "explanation": "Ilusi Kontrol adalah keyakinan keliru bahwa seorang pemain dapat memengaruhi hasil yang murni acak. Desainer game mendorong ini dengan memasukkan \"isyarat keterampilan\" seperti membiarkan pemain menghentikan gulungan atau memilih kapan harus berputar."
+    },
+    {
+      "question": "Anda bertaruh Rp 10.000 pada satu putaran dan \"menang\" Rp 7.000 kembali. Mesin merayakannya dengan lampu dan suara yang berkedip, meskipun Anda kehilangan Rp 3.000. Fitur ini disebut...",
+      "options": ["Putaran bonus", "\"Jackpot mini\"", "Kerugian yang Disamarkan sebagai Kemenangan (LDW)", "Pengembalian dana sebagian"],
+      "correctAnswer": "Kerugian yang Disamarkan sebagai Kemenangan (LDW)",
+      "explanation": "Ini adalah fitur berbahaya yang disebut Kerugian yang Disamarkan sebagai Kemenangan. Meskipun rugi bersih, game ini memberikan umpan balik positif, menutupi kerusakan finansial dan memperkuat tindakan berputar."
+    },
+    {
+      "question": "Seseorang terus berjudi untuk mencoba memenangkan kembali uang yang sudah hilang. Perilaku berbahaya dan tidak rasional ini dikenal sebagai...",
+      "options": ["Investasi strategis", "Mengejar Kerugian", "Kekeliruan Biaya Tertanam (Sunk Cost Fallacy)", "Keduanya B dan C benar"],
+      "correctAnswer": "Keduanya B dan C benar",
+      "explanation": "Kompulsi ini disebut \"Mengejar Kerugian.\" Hal ini didorong oleh Kekeliruan Biaya Tertanam, di mana setiap kerugian dibingkai ulang sebagai \"investasi\" yang hanya dapat diperoleh kembali dengan bermain lebih banyak, menjebak pemain dalam siklus yang menghancurkan."
+    },
+    {
+      "question": "Ketika seseorang menjadi benar-benar terserap dalam perjudian untuk melarikan diri dari tekanan dan kecemasan kehidupan nyata, mereka mengalami keadaan yang dikenal sebagai...",
+      "options": ["\"Mode Zen\"", "\"Aliran Gelap\" (Dark Flow)", "\"Zona Kemenangan\"", "\"Fokus Mendalam\""],
+      "correctAnswer": "\"Aliran Gelap\" (Dark Flow)",
+      "explanation": "Keadaan penyerapan mental total dalam game ini disebut \"aliran gelap.\" Ini adalah pendorong kecanduan yang kuat, karena perjudian menjadi mekanisme koping yang disfungsional untuk melarikan diri dari masalah seperti stres, kebosanan, atau depresi."
+    }
+  ],
+  "quiz_data_national_crisis": [
+    {
+      "question": "Total nilai transaksi judi online di Indonesia mencapai jumlah yang mengejutkan pada tahun 2023. Berapa angka itu?",
+      "options": ["Rp 57 Triliun", "Rp 104 Triliun", "Rp 327 Triliun", "Rp 1.000 Triliun"],
+      "correctAnswer": "Rp 327 Triliun",
+      "explanation": "Total nilai transaksi meledak ke rekor Rp 327 triliun pada tahun 2023 saja. Ini adalah peningkatan besar dari Rp 104,4 triliun tahun sebelumnya, menunjukkan pertumbuhan krisis yang eksponensial."
+    },
+    {
+      "question": "Rp 327 triliun yang dipertaruhkan pada tahun 2023 setara dengan sekitar berapa persen dari seluruh Produk Domestik Bruto (PDB) Indonesia?",
+      "options": ["0.1%", "1.5%", "5%", "10%"],
+      "correctAnswer": "1.5%",
+      "explanation": "Omset tahun 2023 secara makroekonomi signifikan, setara dengan sekitar 1,5% dari PDB Indonesia dan hampir 20% dari seluruh anggaran nasional untuk tahun itu."
+    },
+    {
+      "question": "Apa tren demografis yang paling mengkhawatirkan dalam judi online di Indonesia?",
+      "options": ["Tingginya jumlah pemain lanjut usia", "Penetrasi yang dalam di kalangan anak-anak dan dewasa muda", "Jumlah pemain di daerah pedesaan", "Jumlah pemain wanita"],
+      "correctAnswer": "Penetrasi yang dalam di kalangan anak-anak dan dewasa muda",
+      "explanation": "Tren yang paling mengkhawatirkan adalah tingkat keterlibatan yang mengejutkan dari segmen termuda populasi. Data menunjukkan sekitar 80.000 pemain berusia di bawah 10 tahun, dan lebih dari 440.000 berusia antara 11 dan 20 tahun."
+    },
+    {
+      "question": "Berapa persen penjudi online di Indonesia yang berasal dari komunitas berpenghasilan menengah ke bawah?",
+      "options": ["20%", "50%", "65%", "80%"],
+      "correctAnswer": "80%",
+      "explanation": "Krisis ini secara tidak proporsional memengaruhi mereka yang paling rentan secara ekonomi, dengan perkiraan 80% dari semua pemain berasal dari komunitas berpenghasilan menengah ke bawah."
+    },
+    {
+      "question": "Ketika rumah tangga yang sebelumnya stabil didorong ke dalam kemiskinan karena utang judi, para pejabat memiliki nama khusus untuk itu. Apa sebutannya?",
+      "options": ["\"Kemiskinan Digital\"", "\"Kemiskinan Akibat Judi\"", "\"Kemiskinan Baru\"", "\"Lingkaran Utang\""],
+      "correctAnswer": "\"Kemiskinan Baru\"",
+      "explanation": "Fenomena rumah tangga yang terdorong di bawah garis kemiskinan oleh utang judi telah menjadi pendorong utama dari apa yang sekarang disebut oleh para pejabat Indonesia sebagai \"kemiskinan baru.\""
+    },
+    {
+      "question": "Apa konsekuensi utama yang terdokumentasi dari kecanduan judi terhadap kehidupan keluarga di Indonesia?",
+      "options": ["Keluarga lebih sering berlibur", "Lonjakan angka perceraian", "Peningkatan bisnis milik keluarga", "Komunikasi yang lebih baik antar pasangan"],
+      "correctAnswer": "Lonjakan angka perceraian",
+      "explanation": "Tekanan finansial dan beban psikologis dari kecanduan adalah penyebab langsung dari disintegrasi keluarga, yang mengarah pada lonjakan angka perceraian yang terdokumentasi di seluruh negeri. Sebagai contoh, satu pengadilan mengaitkan 60% kasus perceraiannya dengan judi online."
+    },
+    {
+      "question": "Bagaimana sejumlah besar uang yang dihabiskan untuk judi online merusak perekonomian nasional Indonesia?",
+      "options": ["Ini meningkatkan pendapatan pajak daerah", "Ini mendorong investasi yang produktif", "Ini menyebabkan pelarian modal besar yang tidak produktif ke luar negeri", "Ini memperkuat nilai Rupiah"],
+      "correctAnswer": "Ini menyebabkan pelarian modal besar yang tidak produktif ke luar negeri",
+      "explanation": "Uang tersebut disedot dari rumah tangga Indonesia dan disalurkan ke pusat-pusat kriminal di luar negeri. Ini adalah pelarian modal non-produktif yang tidak memberikan pendapatan pajak, mengurangi daya beli rumah tangga, dan pada akhirnya melemahkan perekonomian nasional."
+    }
+  ],
+  "quiz_data_path_recovery": [
+    {
+      "question": "Berdasarkan UU ITE Indonesia, berapa hukuman penjara maksimal bagi seseorang yang tertangkap bermain judi online?",
+      "options": ["6 bulan", "1 tahun", "4 tahun", "6 tahun"],
+      "correctAnswer": "6 tahun",
+      "explanation": "Berdasarkan Pasal 45, Ayat (2) UU ITE, setiap orang yang terbukti bersalah mendistribusikan, mentransmisikan, atau membuat konten perjudian dapat diakses (yang termasuk bermain) menghadapi hukuman penjara maksimal 6 tahun dan/atau denda Rp 1 miliar."
+    },
+    {
+      "question": "Apa prinsip hukum di mana undang-undang yang lebih spesifik (seperti UU ITE) diprioritaskan daripada undang-undang yang lebih umum (seperti KUHP) dalam menuntut kasus online?",
+      "options": ["Lex superior derogat legi inferiori", "Lex posterior derogat legi priori", "Lex specialis derogat legi generali", "Lex rex"],
+      "correctAnswer": "Lex specialis derogat legi generali",
+      "explanation": "Dalam praktik hukum di Indonesia, prinsip lex specialis derogat legi generali sering diterapkan, yang berarti UU ITE yang lebih spesifik biasanya merupakan instrumen hukum utama yang digunakan untuk menuntut kasus perjudian online."
+    },
+    {
+      "question": "Apa hukum perjudian (maisir) dalam Islam, agama mayoritas orang Indonesia?",
+      "options": ["Diperbolehkan jika untuk tujuan yang baik", "Tidak dianjurkan tetapi tidak dilarang", "Dilarang secara tegas (haram)", "Hanya dilarang selama Ramadhan"],
+      "correctAnswer": "Dilarang secara tegas (haram)",
+      "explanation": "Bagi mayoritas penduduk Muslim di Indonesia, segala bentuk perjudian (maisir) dilarang secara tegas (haram). Hal ini dipandang sebagai tindakan merusak yang merusak prinsip-prinsip inti hukum Islam."
+    },
+    {
+      "question": "Manakah dari berikut ini yang merupakan tanda PERILAKU utama dari kecanduan judi?",
+      "options": ["Merasa cemas atau mudah marah saat tidak berjudi", "Berjudi untuk melarikan diri dari masalah", "Berbohong kepada anggota keluarga untuk menyembunyikan tingkat perjudian", "Mengumpulkan utang yang signifikan"],
+      "correctAnswer": "Berbohong kepada anggota keluarga untuk menyembunyikan tingkat perjudian",
+      "explanation": "Penipuan, yang melibatkan berbohong kepada orang yang dicintai atau orang lain untuk menyembunyikan seberapa banyak seseorang berjudi, adalah tanda peringatan perilaku klasik dari kecanduan."
+    },
+    {
+      "question": "Manakah dari berikut ini yang merupakan tanda EMOSIONAL utama dari kecanduan judi?",
+      "options": ["Menjual barang-barang pribadi untuk mendapatkan uang tunai", "Terus-menerus memikirkan taruhan berikutnya", "Melakukan pencurian untuk mendapatkan uang judi", "Merasa gelisah atau mudah marah ketika mencoba untuk berhenti (penarikan diri)"],
+      "correctAnswer": "Merasa gelisah atau mudah marah ketika mencoba untuk berhenti (penarikan diri)",
+      "explanation": "Merasa gelisah, mudah marah, atau cemas ketika mencoba untuk mengurangi atau berhenti berjudi adalah tanda psikologis yang dikenal sebagai penarikan diri (withdrawal)."
+    },
+    {
+      "question": "Manakah dari berikut ini yang merupakan tanda KEUANGAN utama dari kecanduan judi?",
+      "options": ["Kehilangan minat pada hobi lain", "Sering meminjam uang atau mengambil pinjaman online berbunga tinggi (pinjol)", "Melakukan upaya yang tidak berhasil untuk berhenti berjudi", "Perlu berjudi dengan lebih banyak uang untuk merasakan kegembiraan"],
+      "correctAnswer": "Sering meminjam uang atau mengambil pinjaman online berbunga tinggi (pinjol)",
+      "explanation": "Kesulitan membayar tagihan, sering meminjam uang, dan terutama beralih ke pinjaman online predator (pinjol) adalah tanda bahaya keuangan utama untuk masalah perjudian."
+    },
+    {
+      "question": "Seorang teman terjebak dalam kecanduan judi dan ingin bantuan, tetapi mereka khawatir tentang biayanya. Apa fakta penting yang dapat Anda sampaikan kepada mereka tentang mendapatkan bantuan profesional di Indonesia?",
+      "options": ["Perawatan gratis untuk semua orang, tanpa pertanyaan", "Rehabilitasi untuk kecanduan judi ditanggung oleh BPJS Kesehatan", "Mereka bisa mendapatkan pinjaman dari pemerintah untuk pengobatan", "Semua perawatan dilakukan secara online secara gratis"],
+      "correctAnswer": "Rehabilitasi untuk kecanduan judi ditanggung oleh BPJS Kesehatan",
+      "explanation": "Dalam keputusan kebijakan yang penting, pemerintah Indonesia mengonfirmasi bahwa rehabilitasi untuk kecanduan judi ditanggung oleh skema asuransi kesehatan nasional, BPJS Kesehatan. Ini membuat perawatan profesional dapat diakses dan terjangkau."
+    },
+    {
+      "question": "Rumah sakit pemerintah mana di Bogor yang memiliki klinik khusus untuk mengobati kecanduan perilaku seperti judi?",
+      "options": ["RS Cipto Mangunkusumo", "RS Marzoeki Mahdi (PKJN)", "RS Pertamina", "RS Siloam"],
+      "correctAnswer": "RS Marzoeki Mahdi (PKJN)",
+      "explanation": "Pusat Kesehatan Jiwa Nasional (PKJN) di RS Marzoeki Mahdi di Bogor memiliki Klinik Adiksi Perilaku khusus yang menyediakan perawatan berbasis bukti profesional."
+    },
+    {
+      "question": "Apa cara termudah, paling langsung, berbasis teks bagi seseorang untuk mendapatkan informasi dan dukungan dari pemerintah?",
+      "options": ["Mengirim pesan langsung ke Instagram Presiden", "Menggunakan saluran WhatsApp \"Hotline Stop Judi Online\"", "Mengirim email ke Kementerian Keuangan", "Memposting di dinding Facebook Kominfo"],
+      "correctAnswer": "Menggunakan saluran WhatsApp \"Hotline Stop Judi Online\"",
+      "explanation": "Pemerintah telah meluncurkan hotline WhatsApp berbasis teks dengan hambatan rendah untuk dukungan, dapat diakses melalui tautan: https://s.id/bersamastopjudol."
+    },
+    {
+      "question": "Bagi seseorang yang ragu-ragu untuk mencari bantuan tatap muka, apa langkah pertama yang baik dan pribadi untuk berkonsultasi dengan psikolog atau psikiater berlisensi?",
+      "options": ["Meminta saran di grup media sosial", "Menggunakan layanan telehealth seperti Halodoc atau KlikDokter", "Menonton video self-help online", "Membaca buku tentang kecanduan"],
+      "correctAnswer": "Menggunakan layanan telehealth seperti Halodoc atau KlikDokter",
+      "explanation": "Platform telehealth terkemuka seperti Halodoc menyediakan cara rahasia dan dapat diakses untuk melakukan konsultasi online dengan profesional berlisensi, yang merupakan langkah pertama yang bagus bagi mereka yang ragu-ragu tentang perawatan tatap muka."
+    },
+    {
+      "question": "Selain memblokir situs web (strategi \"sisi penawaran\"), apa strategi penting \"sisi permintaan\" yang diperlukan untuk memerangi judi online secara efektif?",
+      "options": ["Melarang semua smartphone", "Berfokus pada pendidikan, pencegahan, dan rehabilitasi", "Meningkatkan harga kuota internet", "Menutup media sosial"],
+      "correctAnswer": "Berfokus pada pendidikan, pencegahan, dan rehabilitasi",
+      "explanation": "Strategi pemblokiran teknologi murni tidak cukup. Respons yang benar-benar efektif juga harus merupakan strategi sisi permintaan yang berfokus pada mendidik masyarakat, mencegah kecanduan baru, dan merehabilitasi mereka yang sudah menderita."
+    },
+    {
+      "question": "Langkah pertama dan paling penting bagi seseorang untuk membangun ketahanan dan memulai perjalanan pemulihan mereka adalah...",
+      "options": ["Menghapus akun media sosial mereka", "Mencari hobi baru yang lebih menarik", "Mengakui masalahnya dan mengakui perilaku mereka di luar kendali", "Pindah ke kota baru"],
+      "correctAnswer": "Mengakui masalahnya dan mengakui perilaku mereka di luar kendali",
+      "explanation": "Langkah pertama dan paling penting adalah individu tersebut mengakui bahwa mereka memiliki masalah dan mengakui bahwa perilaku perjudian mereka di luar kendali mereka. Tanpa langkah ini, pemulihan tidak dapat dimulai."
+    },
+    {
+      "question": "Perputaran kumulatif dari judi online di Indonesia selama lima tahun terakhir diperkirakan telah melampaui...",
+      "options": ["Rp 100 Triliun", "Rp 327 Triliun", "Rp 500 Triliun", "Rp 600 Triliun"],
+      "correctAnswer": "Rp 600 Triliun",
+      "explanation": "Perputaran kumulatif selama lima tahun terakhir (dari 2019 hingga 2024) diperkirakan lebih dari Rp 600 triliun."
+    },
+    {
+      "question": "Pada akhirnya, pemberantasan judi online di Indonesia bukan hanya tentang perlindungan konsumen, tetapi juga merupakan masalah krusial dari...",
+      "options": ["Keamanan nasional dan regional", "Kebijakan perdagangan internasional", "Kemajuan teknologi", "Mempromosikan pariwisata lokal"],
+      "correctAnswer": "Keamanan nasional dan regional",
+      "explanation": "Karena platform judi online adalah lengan publik dari sindikat kejahatan terorganisir transnasional yang terlibat dalam perdagangan manusia dan pencucian uang, memerangi mereka adalah masalah keamanan nasional dan regional yang kritis."
+    }
+  ]
 }
