@@ -69,7 +69,7 @@ function initializeGame() {
         '⭐': 150,
         '💎': 100,
         '🏆': 75,
-        '🔱': 50,
+        '🔱': 40,
     };
     const REEL_LENGTH = 30; // Number of symbols on each reel track
     let symbolHeight = 0; // Will be calculated after populating reels
