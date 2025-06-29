@@ -166,8 +166,8 @@ body.menu-is-open {
     align-items: center;
     font-size: 3.5rem; /* Responsive font size */
     color: #e3d9ff;
-    /* FIXED: Set line-height to 1 to normalize vertical alignment */
-    line-height: 1;
+    /* FIXED: Set line-height to match the container height for better alignment */
+    line-height: 1.2;
     flex-shrink: 0;
 }
 
@@ -258,9 +258,8 @@ body.menu-is-open {
 /* REVISED: Changed justify-content and added gap */
 #payouts-info div {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 0.25rem 0;
+    justify-content: space-between; /* Changed from 'center' */
+    padding: 0.25rem 2rem; /* Added horizontal padding */
 }
 
 #payouts-info span:first-child {
