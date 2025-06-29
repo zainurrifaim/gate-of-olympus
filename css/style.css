@@ -7,8 +7,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* REMOVED: This line was causing the glitch on mobile devices */
-    /* background-attachment: fixed; */
+    background-attachment: fixed; /* This ensures the background stays in place on scroll */
     color: #f0e6ff;
     min-height: 100vh; /* Ensures body takes full screen height */
 }
